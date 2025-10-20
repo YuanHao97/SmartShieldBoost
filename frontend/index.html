@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartShieldBoost - 计数器</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>SmartShieldBoost</h1>
+            </div>
+            <div class="network-status">
+                <span id="networkStatus" class="status-indicator">未连接</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-calculator"></i> 智能计数器</h2>
+                    <p class="card-subtitle">与区块链上的 Counter 合约交互</p>
+                </div>
+
+                <div class="contract-info">
+                    <div class="info-item">
+                        <label>合约地址:</label>
+                        <div class="address-container">
+                            <span id="contractAddress" class="address">未部署</span>
+                            <button id="copyAddress" class="copy-btn" title="复制地址">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <label>当前值:</label>
+                        <span id="currentValue" class="value-display">0</span>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button id="connectBtn" class="btn btn-primary">
+                        <i class="fas fa-plug"></i>
+                        连接钱包
+                    </button>
+                    
+                    <button id="deployBtn" class="btn btn-secondary" disabled>
+                        <i class="fas fa-rocket"></i>
+                        部署合约
+                    </button>
+                </div>
+
+                <div class="counter-controls">
+                    <div class="control-group">
+                        <button id="incrementBtn" class="btn btn-success" disabled>
+                            <i class="fas fa-plus"></i>
+                            增加 (+1)
+                        </button>
+                        
+                        <div class="custom-increment">
+                            <input type="number" id="incrementAmount" placeholder="输入数量" min="1" disabled>
+                            <button id="incrementByBtn" class="btn btn-info" disabled>
+                                <i class="fas fa-plus-circle"></i>
+                                按数量增加
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transaction-status">
+                    <div id="txStatus" class="status-message"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-history"></i> 交易历史</h3>
+                </div>
+                <div id="transactionHistory" class="transaction-list">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>暂无交易记录</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 SmartShieldBoost. 基于 Hardhat 和 Viem 构建</p>
+        </footer>
+    </div>
+
+    <!-- 加载提示 -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p id="loadingText">处理中...</p>
+        </div>
+    </div>
+
+    <!-- 通知提示 -->
+    <div id="notification" class="notification hidden">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
