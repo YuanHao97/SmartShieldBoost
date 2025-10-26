@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -20,9 +21,5 @@ contract ShieldBoost is Ownable {
     require(poolBalance >= amount, "Insufficient balance");
     poolBalance -= amount;
     pyusdHandler.sendPyusd(msg.sender, amount);
-  }
-
-  function sendToPool(uint amount) external onlyOwner {
-    poolBalance += amount;
   }
 }
