@@ -1,10 +1,26 @@
 [
   {
-    "trader": "0x2546bcd3c84621e976d8185a91a922ae77ecec30",
+    "trader": "0xfabb0ac9d68b0b445fb7357272ff202c5651694a",
     "isBuy": true,
-    "ethAmount": "0.52",
-    "pyusdAmount": "52.53",
-    "price": "101.05",
-    "timestamp": 1761464823939
+    "ethAmount": "1.90",
+    "pyusdAmount": "193.94",
+    "price": "103.92",
+    "timestamp": 1761476424012
+  },
+  {
+    "trader": "0xbcd4042de499d14e55001ccbb24a551f3b954096",
+    "isBuy": true,
+    "ethAmount": "1.55",
+    "pyusdAmount": "163.94",
+    "price": "107.29",
+    "timestamp": 1761476424270
+  },
+  {
+    "trader": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+    "isBuy": true,
+    "ethAmount": "1.49",
+    "pyusdAmount": "161.84",
+    "price": "110.66",
+    "timestamp": 1761476424432
   }
 ]

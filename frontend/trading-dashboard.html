@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETH交易模拟器 - 实时价格监控</title>
+    <title>ETH Trading Simulator - Real-time Price Monitoring</title>
     <style>
         * {
             margin: 0;
@@ -281,20 +281,6 @@
             font-size: 0.8rem;
         }
 
-        .chart-container {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-        }
-
-        .chart {
-            width: 100%;
-            height: 300px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
 
         .status {
             text-align: center;
@@ -332,21 +318,21 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 ETH交易模拟器</h1>
-            <p>实时监控ETH价格波动和交易活动</p>
+            <h1>🚀 ETH Trading Simulator</h1>
+            <p>Real-time monitoring of ETH price fluctuations and trading activity</p>
         </div>
 
         <div class="status" id="status">
-            <div>🔌 正在连接区块链网络...</div>
+            <div>🔌 Connecting to blockchain network...</div>
         </div>
         
         <div class="status" id="updateStatus" style="display: none;">
-            <div>⏰ 下次更新: <span id="countdown">3</span>秒</div>
+            <div>⏰ Next update: <span id="countdown">3</span> seconds</div>
         </div>
 
         <div class="dashboard">
             <div class="card price-card">
-                <h3>💰 当前ETH价格</h3>
+                <h3>💰 Current ETH Price</h3>
                 <div class="current-price" id="currentPrice">100.00 PYUSD</div>
                 <div class="price-change" id="priceChange">
                     <span id="priceChangeText">+0.00%</span>
@@ -354,260 +340,249 @@
             </div>
 
             <div class="card">
-                <h3>🏦 流动性池信息</h3>
+                <h3>🏦 Liquidity Pool Information</h3>
                 <div class="pool-info">
                     <div class="info-item">
-                        <div class="info-label">ETH储备</div>
+                        <div class="info-label">ETH Reserve</div>
                         <div class="info-value" id="ethReserve">100.00 ETH</div>
                     </div>
                     <div class="info-item">
-                        <div class="info-label">PYUSD储备</div>
+                        <div class="info-label">PYUSD Reserve</div>
                         <div class="info-value" id="pyusdReserve">10,000.00 PYUSD</div>
                     </div>
                     <div class="info-item">
-                        <div class="info-label">总流动性</div>
+                        <div class="info-label">Total Liquidity</div>
                         <div class="info-value" id="totalLiquidity">20,000.00</div>
                     </div>
                     <div class="info-item">
-                        <div class="info-label">交易次数</div>
+                        <div class="info-label">Trade Count</div>
                         <div class="info-value" id="tradeCount">0</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="chart-container">
-            <h3>📈 价格走势图</h3>
-            <canvas id="priceChart" class="chart"></canvas>
-        </div>
 
         <div class="trading-section">
-            <h3>💼 交易操作</h3>
+            <h3>💼 Trading Operations</h3>
             <div class="trading-form">
                 <div class="form-group">
-                    <label for="ethAmount">ETH数量</label>
-                    <input type="number" id="ethAmount" placeholder="输入ETH数量" step="0.01" min="0.01">
+                    <label for="ethAmount">ETH Amount</label>
+                    <input type="number" id="ethAmount" placeholder="Enter ETH amount" step="0.01" min="0.01">
                 </div>
                 <div class="form-group">
-                    <label for="pyusdAmount">PYUSD数量</label>
-                    <input type="number" id="pyusdAmount" placeholder="自动计算" readonly>
+                    <label for="pyusdAmount">PYUSD Amount</label>
+                    <input type="number" id="pyusdAmount" placeholder="Auto calculated" readonly>
                 </div>
             </div>
             <div style="text-align: center;">
-                <button class="btn btn-buy" onclick="buyETH()">🟢 买入ETH</button>
-                <button class="btn btn-sell" onclick="sellETH()">🔴 卖出ETH</button>
-                <button class="btn btn-simulate" onclick="startSimulation()">🎲 开始模拟交易</button>
-                <button class="btn btn-simulate" onclick="stopSimulation()" style="background: #f44336; margin-top: 10px;">⏹️ 停止模拟交易</button>
+                <button class="btn btn-buy" onclick="buyETH()">🟢 Buy ETH</button>
+                <button class="btn btn-sell" onclick="sellETH()">🔴 Sell ETH</button>
+            </div>
+            <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                <h4 style="margin-bottom: 10px; color: #333;">💡 Usage Instructions</h4>
+                <ul style="text-align: left; color: #666; font-size: 0.9rem;">
+                    <li>Make sure MetaMask wallet is connected</li>
+                    <li>Buying ETH requires sufficient PYUSD balance</li>
+                    <li>Selling ETH requires sufficient ETH balance</li>
+                    <li>Price adjusts automatically based on liquidity pool</li>
+                </ul>
             </div>
         </div>
 
         <div class="trades-section">
             <div class="trades-header">
-                <h3>📋 最新交易记录</h3>
-                <button class="refresh-btn" onclick="refreshTrades()">🔄 刷新</button>
+                <h3>📋 Latest Trading Records</h3>
+                <button class="refresh-btn" onclick="refreshTrades()">🔄 Refresh</button>
             </div>
             <div class="trades-list" id="tradesList">
                 <div style="text-align: center; color: #666; padding: 20px;">
-                    暂无交易记录
+                    No trading records available
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="./contract-abis.js"></script>
     <script>
-        // 全局变量
+        // Use auto-generated contract ABIs and addresses
+        // These values come from contract-abis.js file
+        const CONTRACT_ADDRESSES = window.CONTRACT_ADDRESSES || {
+            MockPYUSD: "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+            MockETH: "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+            PyusdHandler: "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            LiquidityPool: "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+            ETHSimulator: "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9"
+        };
+
+        // Use full ABIs or simplified ABIs
+        const LIQUIDITY_POOL_ABI = window.SIMPLIFIED_ABIS?.LiquidityPool || [
+            "function getPoolInfo() external view returns (uint256, uint256, uint256, uint256)",
+            "function getCurrentPrice() public view returns (uint256)",
+            "function calculateBuyAmount(uint256 _ethAmount) public view returns (uint256)",
+            "function calculateSellAmount(uint256 _ethAmount) public view returns (uint256)",
+            "event TradeExecuted(address indexed trader, bool isBuy, uint256 ethAmount, uint256 pyusdAmount, uint256 newPrice, uint256 timestamp)"
+        ];
+
+        const ETH_SIMULATOR_ABI = window.SIMPLIFIED_ABIS?.ETHSimulator || [
+            "function buyETH(uint256 ethAmount) external",
+            "function sellETH(uint256 ethAmount) external",
+            "function getETHBalance(address user) external view returns (uint256)",
+            "function getCurrentPrice() external view returns (uint256)",
+            "function getPoolInfo() external view returns (uint256, uint256, uint256, uint256)",
+            "event ETHTraded(address indexed trader, bool isBuy, uint256 ethAmount, uint256 pyusdAmount, uint256 newPrice)"
+        ];
+
+        const MOCK_PYUSD_ABI = window.SIMPLIFIED_ABIS?.MockPYUSD || [
+            "function balanceOf(address account) external view returns (uint256)",
+            "function approve(address spender, uint256 amount) external returns (bool)",
+            "function transfer(address to, uint256 amount) external returns (bool)"
+        ];
+
+        // Global variables
+        let provider = null;
+        let signer = null;
+        let liquidityPoolContract = null;
+        let ethSimulatorContract = null;
+        let mockPYUSDContract = null;
         let currentPrice = 100;
         let initialPrice = 100;
         let tradeHistory = [];
-        let priceHistory = [];
-        let chart = null;
         let simulationInterval = null;
         let countdownInterval = null;
-        let countdown = 10;
+        let countdown = 3;
+        let userAddress = null;
 
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeChart();
-            updateStatus('connected', '✅ 已连接到区块链网络');
-            loadTradeHistory();
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async function() {
+            await initializeWeb3();
+            await loadInitialData();
             startPriceUpdates();
             startCountdown();
         });
 
-        // 初始化图表
-        function initializeChart() {
-            const ctx = document.getElementById('priceChart').getContext('2d');
-            chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: 'ETH价格 (PYUSD)',
-                        data: [],
-                        borderColor: '#4CAF50',
-                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    interaction: {
-                        intersect: false,
-                        mode: 'index'
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            type: 'linear',
-                            title: {
-                                display: true,
-                                text: '价格 (PYUSD)',
-                                font: {
-                                    size: 12,
-                                    weight: 'bold'
-                                }
-                            },
-                            grid: {
-                                color: 'rgba(0,0,0,0.1)',
-                                drawBorder: false
-                            },
-                            ticks: {
-                                callback: function(value) {
-                                    return value.toFixed(2);
-                                },
-                                font: {
-                                    size: 10
-                                }
-                            }
-                        },
-                        x: {
-                            type: 'time',
-                            time: {
-                                displayFormats: {
-                                    second: 'HH:mm:ss',
-                                    minute: 'HH:mm',
-                                    hour: 'HH:mm',
-                                    day: 'MM-dd'
-                                },
-                                tooltipFormat: 'MM-dd HH:mm:ss'
-                            },
-                            adapters: {
-                                date: {
-                                    locale: 'zh-CN'
-                                }
-                            },
-                            title: {
-                                display: true,
-                                text: '时间',
-                                font: {
-                                    size: 12,
-                                    weight: 'bold'
-                                }
-                            },
-                            grid: {
-                                color: 'rgba(0,0,0,0.1)',
-                                drawBorder: false
-                            },
-                            ticks: {
-                                font: {
-                                    size: 10
-                                },
-                                maxRotation: 45,
-                                minRotation: 0
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            labels: {
-                                font: {
-                                    size: 12,
-                                    weight: 'bold'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false,
-                            callbacks: {
-                                label: function(context) {
-                                    return `价格: ${context.parsed.y.toFixed(2)} PYUSD`;
-                                }
-                            }
-                        }
-                    },
-                    elements: {
-                        point: {
-                            radius: 3,
-                            hoverRadius: 6
-                        }
+        // Initialize Web3 connection
+        async function initializeWeb3() {
+            try {
+                // Check if MetaMask is available
+                if (typeof window.ethereum !== 'undefined') {
+                    // Check if ethers is available
+                    if (typeof ethers === 'undefined') {
+                        throw new Error('ethers library not loaded correctly, please check network connection');
                     }
+                    
+                    provider = new ethers.providers.Web3Provider(window.ethereum);
+                    await provider.send("eth_requestAccounts", []);
+                    signer = provider.getSigner();
+                    userAddress = await signer.getAddress();
+                    
+                    // Initialize contract instances
+                    liquidityPoolContract = new ethers.Contract(CONTRACT_ADDRESSES.LiquidityPool, LIQUIDITY_POOL_ABI, signer);
+                    ethSimulatorContract = new ethers.Contract(CONTRACT_ADDRESSES.ETHSimulator, ETH_SIMULATOR_ABI, signer);
+                    mockPYUSDContract = new ethers.Contract(CONTRACT_ADDRESSES.MockPYUSD, MOCK_PYUSD_ABI, signer);
+                    
+                    updateStatus('connected', `✅ Connected to blockchain network (${userAddress.slice(0,6)}...${userAddress.slice(-4)})`);
+                    
+                    // Listen to trading events
+                    setupEventListeners();
+                } else {
+                    updateStatus('disconnected', '❌ Please install MetaMask wallet');
                 }
-            });
+            } catch (error) {
+                console.error('Web3 initialization failed:', error);
+                updateStatus('disconnected', '❌ Failed to connect to blockchain');
+            }
         }
 
-        // 更新状态
+        // Set up event listeners
+        function setupEventListeners() {
+            if (ethSimulatorContract) {
+                ethSimulatorContract.on("ETHTraded", (trader, isBuy, ethAmount, pyusdAmount, newPrice, event) => {
+                    if (trader.toLowerCase() === userAddress.toLowerCase()) {
+                        addTradeToHistory(isBuy, ethAmount, pyusdAmount, newPrice);
+                        updatePriceDisplay();
+                        updatePoolInfo();
+                        updateTradesList();
+                    }
+                });
+            }
+        }
+
+        // Load initial data
+        async function loadInitialData() {
+            try {
+                await updatePoolInfo();
+                await updatePriceDisplay();
+                await loadTradeHistory();
+            } catch (error) {
+                console.error('Failed to load initial data:', error);
+            }
+        }
+
+
+        // Update status
         function updateStatus(type, message) {
             const statusEl = document.getElementById('status');
             statusEl.className = `status ${type}`;
             statusEl.innerHTML = `<div>${message}</div>`;
         }
 
-        // 更新价格显示
-        function updatePriceDisplay() {
-            document.getElementById('currentPrice').textContent = `${currentPrice.toFixed(2)} PYUSD`;
-            
-            const change = ((currentPrice - initialPrice) / initialPrice * 100).toFixed(2);
-            const changeEl = document.getElementById('priceChangeText');
-            changeEl.textContent = `${change >= 0 ? '+' : ''}${change}%`;
-            changeEl.className = change >= 0 ? 'positive' : 'negative';
+        // Update price display
+        async function updatePriceDisplay() {
+            try {
+                if (ethSimulatorContract) {
+                    const priceWei = await ethSimulatorContract.getCurrentPrice();
+                    currentPrice = parseFloat(ethers.utils.formatEther(priceWei));
+                    
+                    if (initialPrice === 100) {
+                        initialPrice = currentPrice;
+                    }
+                }
+                
+                document.getElementById('currentPrice').textContent = `${currentPrice.toFixed(2)} PYUSD`;
+                
+                const change = ((currentPrice - initialPrice) / initialPrice * 100).toFixed(2);
+                const changeEl = document.getElementById('priceChangeText');
+                changeEl.textContent = `${change >= 0 ? '+' : ''}${change}%`;
+                changeEl.className = change >= 0 ? 'positive' : 'negative';
+            } catch (error) {
+                console.error('Failed to update price:', error);
+            }
         }
 
-        // 更新池子信息
-        function updatePoolInfo() {
-            // 模拟数据更新
-            const ethReserve = 100 - (tradeHistory.filter(t => t.isBuy).length * 0.1);
-            const pyusdReserve = 10000 + (tradeHistory.length * 10);
-            
-            document.getElementById('ethReserve').textContent = `${ethReserve.toFixed(2)} ETH`;
-            document.getElementById('pyusdReserve').textContent = `${pyusdReserve.toLocaleString()} PYUSD`;
-            document.getElementById('totalLiquidity').textContent = `${(ethReserve + pyusdReserve / 100).toFixed(2)}`;
-            document.getElementById('tradeCount').textContent = tradeHistory.length;
+        // Update pool information
+        async function updatePoolInfo() {
+            try {
+                if (ethSimulatorContract) {
+                    const poolInfo = await ethSimulatorContract.getPoolInfo();
+                    const ethReserve = parseFloat(ethers.utils.formatEther(poolInfo[0]));
+                    const pyusdReserve = parseFloat(ethers.utils.formatUnits(poolInfo[1], 6)); // PYUSD有6位小数
+                    const totalLiquidity = ethReserve + pyusdReserve / currentPrice;
+                    
+                    document.getElementById('ethReserve').textContent = `${ethReserve.toFixed(2)} ETH`;
+                    document.getElementById('pyusdReserve').textContent = `${pyusdReserve.toLocaleString()} PYUSD`;
+                    document.getElementById('totalLiquidity').textContent = `${totalLiquidity.toFixed(2)}`;
+                    document.getElementById('tradeCount').textContent = tradeHistory.length;
+                }
+            } catch (error) {
+                console.error('Failed to update pool info:', error);
+            }
         }
 
         // 开始价格更新
         function startPriceUpdates() {
-            setInterval(() => {
-                // 模拟价格波动
-                const change = (Math.random() - 0.5) * 2; // -1 到 +1 的随机变化
-                currentPrice = Math.max(50, currentPrice + change); // 最低50 PYUSD
-                
-                priceHistory.push({
-                    time: new Date(),
-                    price: currentPrice
-                });
-                
-                // 保持最近100个数据点
-                if (priceHistory.length > 100) {
-                    priceHistory.shift();
-                }
-                
-                updatePriceDisplay();
-                updateChart();
+            setInterval(async () => {
+                await updatePriceDisplay();
+                await updatePoolInfo();
+                await loadTradeHistory(); // 每次更新时重新加载交易记录
                 startCountdown();
-            }, 3000); // 改为3秒更新一次
+            }, 3000); // 3秒更新一次
         }
 
         // 开始倒计时
         function startCountdown() {
-            countdown = 10;
+            countdown = 3;
             document.getElementById('updateStatus').style.display = 'block';
             
             if (countdownInterval) {
@@ -625,79 +600,97 @@
             }, 1000);
         }
 
-        // 更新图表
-        function updateChart() {
-            if (chart && priceHistory.length > 0) {
-                // 为时间轴准备数据
-                const chartData = priceHistory.map(p => ({
-                    x: p.time,
-                    y: p.price
-                }));
-                
-                chart.data.datasets[0].data = chartData;
-                
-                // 自适应Y轴范围
-                const prices = priceHistory.map(p => p.price);
-                const minPrice = Math.min(...prices);
-                const maxPrice = Math.max(...prices);
-                const priceRange = maxPrice - minPrice;
-                const padding = priceRange * 0.1; // 10%的边距
-                
-                chart.options.scales.y.min = Math.max(0, minPrice - padding);
-                chart.options.scales.y.max = maxPrice + padding;
-                
-                chart.update('none');
-            }
-        }
 
         // 买入ETH
-        function buyETH() {
+        async function buyETH() {
             const ethAmount = parseFloat(document.getElementById('ethAmount').value);
             if (!ethAmount || ethAmount <= 0) {
                 alert('请输入有效的ETH数量');
                 return;
             }
             
-            // 模拟交易
-            const pyusdNeeded = ethAmount * currentPrice;
-            const newPrice = currentPrice * 1.01; // 价格上涨1%
-            
-            addTrade(true, ethAmount, pyusdNeeded, newPrice);
-            currentPrice = newPrice;
-            
-            updatePriceDisplay();
-            updatePoolInfo();
-            updateTradesList();
+            try {
+                updateStatus('connected', '⏳ 正在处理买入交易...');
+                
+                // 计算需要的PYUSD数量
+                const ethAmountWei = ethers.utils.parseEther(ethAmount.toString());
+                const pyusdNeededWei = await liquidityPoolContract.calculateBuyAmount(ethAmountWei);
+                const pyusdNeeded = parseFloat(ethers.utils.formatUnits(pyusdNeededWei, 6));
+                
+                // 检查用户PYUSD余额
+                const userBalance = await mockPYUSDContract.balanceOf(userAddress);
+                if (userBalance.lt(pyusdNeededWei)) {
+                    alert(`PYUSD余额不足，需要 ${pyusdNeeded.toFixed(2)} PYUSD`);
+                    return;
+                }
+                
+                // 授权PYUSD转账
+                const approveTx = await mockPYUSDContract.approve(CONTRACT_ADDRESSES.ETHSimulator, pyusdNeededWei);
+                await approveTx.wait();
+                
+                // 执行买入交易
+                const buyTx = await ethSimulatorContract.buyETH(ethAmountWei);
+                await buyTx.wait();
+                
+                updateStatus('connected', '✅ 买入交易成功！');
+                
+                // 更新显示
+                await updatePriceDisplay();
+                await updatePoolInfo();
+                updateTradesList();
+                
+            } catch (error) {
+                console.error('买入ETH失败:', error);
+                updateStatus('disconnected', '❌ 买入交易失败');
+                alert('交易失败: ' + error.message);
+            }
         }
 
         // 卖出ETH
-        function sellETH() {
+        async function sellETH() {
             const ethAmount = parseFloat(document.getElementById('ethAmount').value);
             if (!ethAmount || ethAmount <= 0) {
                 alert('请输入有效的ETH数量');
                 return;
             }
             
-            // 模拟交易
-            const pyusdReceived = ethAmount * currentPrice;
-            const newPrice = currentPrice * 0.99; // 价格下跌1%
-            
-            addTrade(false, ethAmount, pyusdReceived, newPrice);
-            currentPrice = newPrice;
-            
-            updatePriceDisplay();
-            updatePoolInfo();
-            updateTradesList();
+            try {
+                updateStatus('connected', '⏳ 正在处理卖出交易...');
+                
+                // 检查用户ETH余额
+                const ethAmountWei = ethers.utils.parseEther(ethAmount.toString());
+                const userETHBalance = await ethSimulatorContract.getETHBalance(userAddress);
+                if (userETHBalance.lt(ethAmountWei)) {
+                    alert(`ETH余额不足，当前余额: ${ethers.utils.formatEther(userETHBalance)} ETH`);
+                    return;
+                }
+                
+                // 执行卖出交易
+                const sellTx = await ethSimulatorContract.sellETH(ethAmountWei);
+                await sellTx.wait();
+                
+                updateStatus('connected', '✅ 卖出交易成功！');
+                
+                // 更新显示
+                await updatePriceDisplay();
+                await updatePoolInfo();
+                updateTradesList();
+                
+            } catch (error) {
+                console.error('卖出ETH失败:', error);
+                updateStatus('disconnected', '❌ 卖出交易失败');
+                alert('交易失败: ' + error.message);
+            }
         }
 
-        // 添加交易记录
-        function addTrade(isBuy, ethAmount, pyusdAmount, price) {
+        // 添加交易记录到历史
+        function addTradeToHistory(isBuy, ethAmount, pyusdAmount, price) {
             const trade = {
                 id: Date.now(),
                 isBuy: isBuy,
-                ethAmount: ethAmount,
-                pyusdAmount: pyusdAmount,
-                price: price,
+                ethAmount: parseFloat(ethers.utils.formatEther(ethAmount)),
+                pyusdAmount: parseFloat(ethers.utils.formatUnits(pyusdAmount, 6)),
+                price: parseFloat(ethers.utils.formatEther(price)),
                 timestamp: new Date()
             };
             
@@ -724,70 +717,70 @@
                         ${trade.isBuy ? '买入' : '卖出'}
                     </div>
                     <div class="trade-details">
-                        <div class="trade-amount">${trade.ethAmount} ETH</div>
+                        <div class="trade-amount">${trade.ethAmount.toFixed(4)} ETH</div>
                         <div class="trade-price">${trade.pyusdAmount.toFixed(2)} PYUSD</div>
+                        <div class="trade-trader" style="font-size: 0.7rem; color: #999; margin-top: 2px;">
+                            ${trade.trader ? `${trade.trader.slice(0,6)}...${trade.trader.slice(-4)}` : ''}
+                        </div>
                     </div>
                     <div class="trade-time">${trade.timestamp.toLocaleTimeString()}</div>
                 </div>
             `).join('');
         }
 
-        // 开始模拟交易
-        function startSimulation() {
-            if (simulationInterval) {
-                clearInterval(simulationInterval);
-            }
-            
-            updateStatus('connected', '🎲 模拟交易进行中...');
-            
-            simulationInterval = setInterval(() => {
-                const isBuy = Math.random() > 0.5;
-                const ethAmount = Math.random() * 2 + 0.1; // 0.1-2.1 ETH
-                
-                if (isBuy) {
-                    const pyusdNeeded = ethAmount * currentPrice;
-                    const newPrice = currentPrice * (1 + Math.random() * 0.02); // 0-2%上涨
-                    addTrade(true, ethAmount, pyusdNeeded, newPrice);
-                    currentPrice = newPrice;
-                } else {
-                    const pyusdReceived = ethAmount * currentPrice;
-                    const newPrice = currentPrice * (1 - Math.random() * 0.02); // 0-2%下跌
-                    addTrade(false, ethAmount, pyusdReceived, newPrice);
-                    currentPrice = newPrice;
+        // 加载交易历史
+        async function loadTradeHistory() {
+            try {
+                const response = await fetch('../trade-history.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                updatePriceDisplay();
-                updatePoolInfo();
+                const data = await response.json();
+                
+                // 将JSON数据转换为交易记录格式
+                tradeHistory = data.trades.map(trade => ({
+                    id: trade.id,
+                    isBuy: trade.isBuy,
+                    ethAmount: trade.ethAmount,
+                    pyusdAmount: trade.pyusdAmount,
+                    price: trade.price,
+                    timestamp: new Date(trade.timestamp),
+                    trader: trade.trader
+                }));
+                
+                console.log(`✅ 成功加载 ${tradeHistory.length} 条交易记录`);
                 updateTradesList();
-            }, 3000); // 改为3秒更新一次
-        }
-
-        // 停止模拟交易
-        function stopSimulation() {
-            if (simulationInterval) {
-                clearInterval(simulationInterval);
-                simulationInterval = null;
-                updateStatus('connected', '✅ 模拟交易已停止');
+                
+            } catch (error) {
+                console.error('❌ 加载交易历史失败:', error);
+                // 如果加载失败，保持空的交易历史
+                tradeHistory = [];
+                updateTradesList();
             }
         }
 
         // 刷新交易记录
-        function refreshTrades() {
-            updateTradesList();
-        }
-
-        // 加载交易历史
-        function loadTradeHistory() {
-            // 这里可以加载保存的交易历史
-            updateTradesList();
+        async function refreshTrades() {
+            console.log('🔄 正在刷新交易记录...');
+            await loadTradeHistory();
         }
 
         // ETH数量输入变化时更新PYUSD数量
-        document.getElementById('ethAmount').addEventListener('input', function() {
+        document.getElementById('ethAmount').addEventListener('input', async function() {
             const ethAmount = parseFloat(this.value);
-            if (ethAmount > 0) {
-                const pyusdAmount = ethAmount * currentPrice;
-                document.getElementById('pyusdAmount').value = pyusdAmount.toFixed(2);
+            if (ethAmount > 0 && liquidityPoolContract) {
+                try {
+                    const ethAmountWei = ethers.utils.parseEther(ethAmount.toString());
+                    const pyusdNeededWei = await liquidityPoolContract.calculateBuyAmount(ethAmountWei);
+                    const pyusdAmount = parseFloat(ethers.utils.formatUnits(pyusdNeededWei, 6));
+                    document.getElementById('pyusdAmount').value = pyusdAmount.toFixed(2);
+                } catch (error) {
+                    console.error('计算PYUSD数量失败:', error);
+                    document.getElementById('pyusdAmount').value = '计算失败';
+                }
+            } else {
+                document.getElementById('pyusdAmount').value = '';
             }
         });
     </script>

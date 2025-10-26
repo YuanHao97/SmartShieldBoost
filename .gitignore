@@ -22,3 +22,6 @@
 /contracts/.DS_Store
 /log
 /.deps
+/frontend/contract-abis.js
+/frontend/contract-abis.json
+/frontend/contract-abis.d.ts

@@ -1,4 +1,4 @@
-import { writeFileSync } from "fs";
+import { writeFileSync, readFileSync } from "fs";
 import { join } from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -7,68 +7,161 @@ import { network } from "hardhat";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Function to extract ABI
+function extractABI(contractName: string) {
+  try {
+    const artifactPath = join(__dirname, `../artifacts/contracts/${contractName}.sol/${contractName}.json`);
+    const artifact = JSON.parse(readFileSync(artifactPath, 'utf8'));
+    return artifact.abi;
+  } catch (error) {
+    console.error(`❌ Failed to read ABI for ${contractName}:`, error);
+    return null;
+  }
+}
+
+// Generate frontend ABI file
+function generateFrontendABI(deploymentInfo: any) {
+  console.log("\n🔧 Extracting contract ABIs...");
+  
+  const contractNames = ["MockPYUSD", "MockETH", "PyusdHandler", "LiquidityPool", "ETHSimulator"];
+  const abis: Record<string, any[]> = {};
+  
+  // Extract ABIs for all contracts
+  for (const contractName of contractNames) {
+    const abi = extractABI(contractName);
+    if (abi) {
+      abis[contractName] = abi;
+      console.log(`✅ ${contractName} ABI extracted successfully`);
+    }
+  }
+  
+  // Generate JavaScript file (using global variables, compatible with browsers)
+  const jsContent = `// Auto-generated contract ABI file
+// Generated at: ${new Date().toISOString()}
+
+// Global variables for browser use
+window.CONTRACT_ABIS = ${JSON.stringify(abis, null, 2)};
+
+// Contract addresses (Hardhat local network)
+window.CONTRACT_ADDRESSES = ${JSON.stringify(deploymentInfo.contracts, null, 2)};
+
+// Simplified ABIs (only functions needed by frontend)
+window.SIMPLIFIED_ABIS = {
+  LiquidityPool: [
+    "function getPoolInfo() external view returns (uint256, uint256, uint256, uint256)",
+    "function getCurrentPrice() public view returns (uint256)",
+    "function calculateBuyAmount(uint256 _ethAmount) public view returns (uint256)",
+    "function calculateSellAmount(uint256 _ethAmount) public view returns (uint256)",
+    "event TradeExecuted(address indexed trader, bool isBuy, uint256 ethAmount, uint256 pyusdAmount, uint256 newPrice, uint256 timestamp)"
+  ],
+  
+  ETHSimulator: [
+    "function buyETH(uint256 ethAmount) external",
+    "function sellETH(uint256 ethAmount) external", 
+    "function getETHBalance(address user) external view returns (uint256)",
+    "function getCurrentPrice() external view returns (uint256)",
+    "function getPoolInfo() external view returns (uint256, uint256, uint256, uint256)",
+    "event ETHTraded(address indexed trader, bool isBuy, uint256 ethAmount, uint256 pyusdAmount, uint256 newPrice)"
+  ],
+  
+  MockPYUSD: [
+    "function balanceOf(address account) external view returns (uint256)",
+    "function approve(address spender, uint256 amount) external returns (bool)",
+    "function transfer(address to, uint256 amount) external returns (bool)",
+    "function mint(address to, uint256 amount) external"
+  ]
+};
+
+// Compatible with ES6 module exports (if using module system)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    CONTRACT_ABIS: window.CONTRACT_ABIS,
+    CONTRACT_ADDRESSES: window.CONTRACT_ADDRESSES,
+    SIMPLIFIED_ABIS: window.SIMPLIFIED_ABIS
+  };
+}
+`;
+
+  // Write JavaScript file
+  const jsPath = join(__dirname, "../frontend/contract-abis.js");
+  writeFileSync(jsPath, jsContent);
+  console.log(`📄 Frontend ABI file generated: ${jsPath}`);
+  
+  // Generate JSON file
+  const jsonContent = {
+    timestamp: new Date().toISOString(),
+    contracts: abis,
+    addresses: deploymentInfo.contracts,
+    initialization: deploymentInfo.initialization
+  };
+  
+  const jsonPath = join(__dirname, "../frontend/contract-abis.json");
+  writeFileSync(jsonPath, JSON.stringify(jsonContent, null, 2));
+  console.log(`📄 JSON ABI file generated: ${jsonPath}`);
+}
+
 async function main() {
-  console.log("🚀 开始部署交易系统...");
+  console.log("🚀 Starting trading system deployment...");
   const { viem } = await network.connect();
-  // 获取部署者账户
+  // Get deployer account
   const [deployer] = await viem.getWalletClients();
-  console.log(`📊 部署者地址: ${deployer.account.address}`);
+  console.log(`📊 Deployer address: ${deployer.account.address}`);
   // console.log(`💰 部署者余额: ${Number(await viem.getBalance({ address: deployer.account.address })) / 1e18} ETH`);
 
-  // 部署合约
-  console.log("\n📦 开始部署合约...");
+  // Deploy contracts
+  console.log("\n📦 Starting contract deployment...");
 
-  // 1. 部署MockPYUSD
-  console.log("1️⃣ 部署MockPYUSD...");
+  // 1. Deploy MockPYUSD
+  console.log("1️⃣ Deploying MockPYUSD...");
   const mockPYUSD = await viem.deployContract("MockPYUSD", []);
-  console.log(`✅ MockPYUSD 部署到: ${mockPYUSD.address}`);
+  console.log(`✅ MockPYUSD deployed to: ${mockPYUSD.address}`);
 
-  // 2. 部署MockETH
-  console.log("2️⃣ 部署MockETH...");
+  // 2. Deploy MockETH
+  console.log("2️⃣ Deploying MockETH...");
   const mockETH = await viem.deployContract("MockETH", []);
-  console.log(`✅ MockETH 部署到: ${mockETH.address}`);
+  console.log(`✅ MockETH deployed to: ${mockETH.address}`);
 
-  // 3. 部署PyusdHandler
-  console.log("3️⃣ 部署PyusdHandler...");
+  // 3. Deploy PyusdHandler
+  console.log("3️⃣ Deploying PyusdHandler...");
   const pyusdHandler = await viem.deployContract("PyusdHandler", [mockPYUSD.address]);
-  console.log(`✅ PyusdHandler 部署到: ${pyusdHandler.address}`);
+  console.log(`✅ PyusdHandler deployed to: ${pyusdHandler.address}`);
 
-  // 4. 部署LiquidityPool
-  console.log("4️⃣ 部署LiquidityPool...");
+  // 4. Deploy LiquidityPool
+  console.log("4️⃣ Deploying LiquidityPool...");
   const liquidityPool = await viem.deployContract("LiquidityPool", [mockPYUSD.address, mockETH.address, pyusdHandler.address]);
-  console.log(`✅ LiquidityPool 部署到: ${liquidityPool.address}`);
+  console.log(`✅ LiquidityPool deployed to: ${liquidityPool.address}`);
 
-  // 5. 部署ETHSimulator
-  console.log("5️⃣ 部署ETHSimulator...");
+  // 5. Deploy ETHSimulator
+  console.log("5️⃣ Deploying ETHSimulator...");
   const ethSimulator = await viem.deployContract("ETHSimulator", [liquidityPool.address, mockETH.address]);
-  console.log(`✅ ETHSimulator 部署到: ${ethSimulator.address}`);
+  console.log(`✅ ETHSimulator deployed to: ${ethSimulator.address}`);
 
-  // 初始化系统
-  console.log("\n🔧 初始化系统...");
+  // Initialize system
+  console.log("\n🔧 Initializing system...");
 
-  // 给部署者铸造初始PYUSD
+  // Mint initial PYUSD to deployer
   const initialPYUSD = 20000000n * 10n ** 6n; // 20,000,000 PYUSD
   await mockPYUSD.write.mint([deployer.account.address, initialPYUSD]);
-  console.log(`💰 给部署者铸造了 ${Number(initialPYUSD) / 1e6} PYUSD`);
+  console.log(`💰 Minted ${Number(initialPYUSD) / 1e6} PYUSD to deployer`);
 
-  // 将LiquidityPool添加为MockETH的铸造者
+  // Add LiquidityPool as minter for MockETH
   await mockETH.write.addMinter([liquidityPool.address]);
-  console.log(`🔑 将LiquidityPool添加为MockETH的铸造者`);
+  console.log(`🔑 Added LiquidityPool as MockETH minter`);
 
-  // 初始化流动性池
+  // Initialize liquidity pool
   const initialETHReserve = 100n * 10n ** 18n; // 100 ETH
   const initialPYUSDReserve = 10000n * 10n ** 6n; // 10,000 PYUSD (100 ETH * 100 PYUSD/ETH)
   
   await mockPYUSD.write.approve([liquidityPool.address, initialPYUSDReserve]);
   await liquidityPool.write.initializePool([initialETHReserve, initialPYUSDReserve]);
-  console.log(`🏦 流动性池初始化完成: ${Number(initialETHReserve) / 1e18} ETH, ${Number(initialPYUSDReserve) / 1e6} PYUSD`);
+  console.log(`🏦 Liquidity pool initialized: ${Number(initialETHReserve) / 1e18} ETH, ${Number(initialPYUSDReserve) / 1e6} PYUSD`);
   // const cp = await liquidityPool.read.getCurrentPrice();
   // console.log(`📈 初始ETH价格1: ${Number(cp) / 1e6} PYUSD`);
-  // 获取初始价格
+  // Get initial price
   const initialPrice = await liquidityPool.read.getCurrentPrice();
-  console.log(`📈 初始ETH价格: ${Number(initialPrice) / 1e6} PYUSD`);
+  console.log(`📈 Initial ETH price: ${Number(initialPrice) / 1e6} PYUSD`);
 
-  // 保存部署信息
+  // Save deployment info
   const deploymentInfo = {
     network: "hardhat",
     deployer: deployer.account.address,
@@ -89,51 +182,54 @@ async function main() {
 
   const deploymentPath = join(__dirname, "../log/deployment-info.json");
   writeFileSync(deploymentPath, JSON.stringify(deploymentInfo, null, 2));
-  console.log(`\n💾 部署信息已保存到: ${deploymentPath}`);
+  console.log(`\n💾 Deployment info saved to: ${deploymentPath}`);
 
-  // 输出部署摘要
-  console.log("\n📋 部署摘要:");
+  // Generate frontend ABI file
+  generateFrontendABI(deploymentInfo);
+
+  // Output deployment summary
+  console.log("\n📋 Deployment Summary:");
   console.log("=".repeat(50));
-  console.log(`🌐 网络: Hardhat`);
-  console.log(`👤 部署者: ${deploymentInfo.deployer}`);
+  console.log(`🌐 Network: Hardhat`);
+  console.log(`👤 Deployer: ${deploymentInfo.deployer}`);
   console.log(`📦 MockPYUSD: ${deploymentInfo.contracts.MockPYUSD}`);
   console.log(`📦 MockETH: ${deploymentInfo.contracts.MockETH}`);
   console.log(`📦 PyusdHandler: ${deploymentInfo.contracts.PyusdHandler}`);
   console.log(`📦 LiquidityPool: ${deploymentInfo.contracts.LiquidityPool}`);
   console.log(`📦 ETHSimulator: ${deploymentInfo.contracts.ETHSimulator}`);
-  console.log(`💰 初始价格: ${deploymentInfo.initialization.initialPrice} PYUSD`);
+  console.log(`💰 Initial Price: ${deploymentInfo.initialization.initialPrice} PYUSD`);
   console.log("=".repeat(50));
 
-  // 测试基本功能
-  console.log("\n🧪 测试基本功能...");
+  // Test basic functionality
+  console.log("\n🧪 Testing basic functionality...");
   
-  // 测试价格查询
+  // Test price query
   const currentPrice = await liquidityPool.read.getCurrentPrice();
-  console.log(`✅ 当前价格查询: ${Number(currentPrice) / 1e6} PYUSD`);
+  console.log(`✅ Current price query: ${Number(currentPrice) / 1e6} PYUSD`);
   
   // 测试池子信息查询
   const poolInfo = await liquidityPool.read.getPoolInfo();
   // console.log(`✅ 池子信息查询: ETH=${Number(poolInfo.ethReserve) / 1e18}, PYUSD=${Number(poolInfo.pyusdReserve) / 1e6}`);
   
-  // 测试买入计算
+  // Test buy calculation
   const testETHAmount = 1n * 10n ** 18n; // 1 ETH
   const buyAmount = await liquidityPool.read.calculateBuyAmount([testETHAmount]);
-  console.log(`✅ 买入1 ETH需要: ${Number(buyAmount) / 1e6} PYUSD`);
+  console.log(`✅ Buy 1 ETH requires: ${Number(buyAmount) / 1e6} PYUSD`);
   
-  // 测试卖出计算
+  // Test sell calculation
   const sellAmount = await liquidityPool.read.calculateSellAmount([testETHAmount]);
-  console.log(`✅ 卖出1 ETH得到: ${Number(sellAmount) / 1e6} PYUSD`);
+  console.log(`✅ Sell 1 ETH gets: ${Number(sellAmount) / 1e6} PYUSD`);
 
-  console.log("\n🎉 部署完成！系统已准备就绪。");
-  console.log("\n📝 下一步操作:");
-  console.log("1. 运行模拟交易: npx hardhat run scripts/simulate-trading.ts");
-  console.log("2. 打开前端页面: frontend/trading-dashboard.html");
-  console.log("3. 查看部署信息: log/deployment-info.json");
+  console.log("\n🎉 Deployment completed! System is ready.");
+  console.log("\n📝 Next steps:");
+  console.log("1. Run simulation trading: npx hardhat run scripts/simulate-trading.ts");
+  console.log("2. Open frontend page: frontend/trading-dashboard.html");
+  console.log("3. View deployment info: log/deployment-info.json");
 }
 
 main()
   .then(() => process.exit(0))
   .catch((error) => {
-    console.error("❌ 部署失败:", error);
+    console.error("❌ Deployment failed:", error);
     process.exit(1);
   });

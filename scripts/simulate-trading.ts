@@ -8,15 +8,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 async function main() {
-  console.log("🚀 开始模拟交易系统...");
+  console.log("🚀 Starting trading simulation system...");
   
   const { viem } = await network.connect();
   
-  // 获取测试账户
+  // Get test accounts
   const [deployer, ...accounts] = await viem.getWalletClients();
-  console.log(`📊 使用 ${accounts.length} 个测试账户进行模拟交易`);
+  console.log(`📊 Using ${accounts.length} test accounts for simulation trading`);
 
-  // 读取部署信息
+  // Read deployment info
   let deploymentInfo;
   try {
     const deploymentPath = join(__dirname, '../log/deployment-info.json');
@@ -24,27 +24,27 @@ async function main() {
     deploymentInfo = JSON.parse(deploymentData);
   } catch (error) {
     console.error(error);
-    console.error("❌ 无法读取部署信息，请先运行部署脚本");
+    console.error("❌ Cannot read deployment info, please run deployment script first");
     process.exit(1);
   }
   // console.log("deploymentInfo:"+JSON.stringify(deploymentInfo));
-  // 获取合约实例
+  // Get contract instances
   const mockPYUSD = await viem.getContractAt("MockPYUSD", deploymentInfo.contracts.MockPYUSD);
   const mockETH = await viem.getContractAt("MockETH", deploymentInfo.contracts.MockETH);
   const liquidityPool = await viem.getContractAt("LiquidityPool", deploymentInfo.contracts.LiquidityPool);
   const ethSimulator = await viem.getContractAt("ETHSimulator", deploymentInfo.contracts.ETHSimulator);
-  // 给所有账户铸造MockPYUSD
+  // Mint MockPYUSD to all accounts
   const initialPYUSDBalance = 100000n * 10n ** 6n; // 100,000 PYUSD
   for (const account of accounts) {
     await mockPYUSD.write.mint([account.account.address, initialPYUSDBalance]);
   }
-  console.log(`💰 给每个账户铸造了 ${Number(initialPYUSDBalance) / 1e6} PYUSD`);
+  console.log(`💰 Minted ${Number(initialPYUSDBalance) / 1e6} PYUSD to each account`);
 
-  // 获取初始价格
+  // Get initial price
   const initialPrice = await liquidityPool.read.getCurrentPrice();
-  console.log(`📈 初始ETH价格2: ${Number(initialPrice) / 1e6} PYUSD`);
+  console.log(`📈 Initial ETH price: ${Number(initialPrice) / 1e6} PYUSD`);
 
-  // 交易历史
+  // Trading history
   const tradeHistory: Array<{
     trader: string;
     isBuy: boolean;
@@ -54,15 +54,15 @@ async function main() {
     timestamp: number;
   }> = [];
 
-  // 模拟5次交易
-  for (let i = 0; i < 5; i++) {
+  // Simulate 10 trades
+  for (let i = 0; i < 10; i++) {
     const randomAccount = accounts[Math.floor(Math.random() * accounts.length)];
     const isBuy = Math.random() > 0.5;
     const ethAmount = BigInt(Math.floor(Math.random() * 2 * 1e18) + 1e17); // 0.1-2.1 ETH
     
     try {
       if (isBuy) {
-        // 买入ETH
+        // Buy ETH
         const pyusdNeeded = await liquidityPool.read.calculateBuyAmount([ethAmount]);
         const accountBalance = await mockPYUSD.read.balanceOf([randomAccount.account.address]);
         
@@ -84,10 +84,10 @@ async function main() {
             timestamp: Date.now()
           });
           
-          console.log(`🟢 账户 ${randomAccount.account.address.slice(0, 6)}... 买入 ${(Number(ethAmount) / 1e18).toFixed(2)} ETH, 价格: ${(Number(newPrice) / 1e6).toFixed(2)} PYUSD`);
+          console.log(`🟢 Account ${randomAccount.account.address.slice(0, 6)}... bought ${(Number(ethAmount) / 1e18).toFixed(2)} ETH, price: ${(Number(newPrice) / 1e6).toFixed(2)} PYUSD`);
         }
       } else {
-        // 卖出ETH
+        // Sell ETH
         const ethBalance = await mockETH.read.balanceOf([randomAccount.account.address]);
         const sellAmount = ethBalance > ethAmount ? ethAmount : ethBalance;
         
@@ -108,43 +108,43 @@ async function main() {
             timestamp: Date.now()
           });
           
-          console.log(`🔴 账户 ${randomAccount.account.address.slice(0, 6)}... 卖出 ${(Number(sellAmount) / 1e18).toFixed(2)} ETH, 价格: ${(Number(newPrice) / 1e6).toFixed(2)} PYUSD`);
+          console.log(`🔴 Account ${randomAccount.account.address.slice(0, 6)}... sold ${(Number(sellAmount) / 1e18).toFixed(2)} ETH, price: ${(Number(newPrice) / 1e6).toFixed(2)} PYUSD`);
         }
       }
     } catch (error) {
-      console.log(`❌ 交易失败: ${error}`);
+      console.log(`❌ Trading failed: ${error}`);
     }
     
-    // 等待一段时间
+    // Wait for a while
     await new Promise(resolve => setTimeout(resolve, 100));
   }
 
-  // 输出最终结果
-  console.log("\n📊 交易模拟完成!");
+  // Output final results
+  console.log("\n📊 Trading simulation completed!");
   
-  // 获取最终价格和池子信息
+  // Get final price and pool info
   const finalPrice = await liquidityPool.read.getCurrentPrice();
   const poolInfo = await liquidityPool.read.getPoolInfo();
   
-  console.log(`📈 最终ETH价格: ${(Number(finalPrice) / 1e6).toFixed(2)} PYUSD`);
+  console.log(`📈 Final ETH price: ${(Number(finalPrice) / 1e6).toFixed(2)} PYUSD`);
   
-  console.log(`🏦 最终池子状态:`);
-  console.log(`   ETH储备: ${(Number(poolInfo[0]) / 1e18).toFixed(2)} ETH`);
-  console.log(`   PYUSD储备: ${(Number(poolInfo[1]) / 1e6).toLocaleString()} PYUSD`);
-  console.log(`   总流动性: ${(Number(poolInfo[3]) / 1e18).toFixed(2)}`);
+  console.log(`🏦 Final pool status:`);
+  console.log(`   ETH Reserve: ${(Number(poolInfo[0]) / 1e18).toFixed(2)} ETH`);
+  console.log(`   PYUSD Reserve: ${(Number(poolInfo[1]) / 1e6).toLocaleString()} PYUSD`);
+  console.log(`   Total Liquidity: ${(Number(poolInfo[3]) / 1e18).toFixed(2)}`);
 
-  // 输出交易历史
-  console.log("\n📋 交易历史 (最近10笔):");
+  // Output trading history
+  console.log("\n📋 Trading History (Last 10 trades):");
   const recentTrades = tradeHistory.slice(-10);
   recentTrades.forEach((trade, index) => {
-    const action = trade.isBuy ? "买入" : "卖出";
-    console.log(`${index + 1}. ${action} ${trade.ethAmount} ETH, 价格: ${trade.price} PYUSD`);
+    const action = trade.isBuy ? "Buy" : "Sell";
+    console.log(`${index + 1}. ${action} ${trade.ethAmount} ETH, price: ${trade.price} PYUSD`);
   });
 
-  // 保存交易历史到文件
+  // Save trading history to file
   const historyPath = join(__dirname, '../trade-history.json');
   writeFileSync(historyPath, JSON.stringify(tradeHistory, null, 2));
-  console.log(`\n💾 交易历史已保存到: ${historyPath}`);
+  console.log(`\n💾 Trading history saved to: ${historyPath}`);
 }
 
 main()
