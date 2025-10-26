@@ -1,0 +1,456 @@
+{
+  "trades": [
+    {
+      "id": 1761470929292,
+      "isBuy": true,
+      "ethAmount": 0.1185,
+      "pyusdAmount": 11.83,
+      "price": 99.88,
+      "timestamp": "2025-10-26T09:28:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761470869292,
+      "isBuy": false,
+      "ethAmount": 0.5619,
+      "pyusdAmount": 56.14,
+      "price": 99.9,
+      "timestamp": "2025-10-26T09:27:49.292Z",
+      "trader": "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
+    },
+    {
+      "id": 1761470809292,
+      "isBuy": false,
+      "ethAmount": 2.6534,
+      "pyusdAmount": 265.04,
+      "price": 99.89,
+      "timestamp": "2025-10-26T09:26:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761470749292,
+      "isBuy": true,
+      "ethAmount": 0.29,
+      "pyusdAmount": 28.97,
+      "price": 99.91,
+      "timestamp": "2025-10-26T09:25:49.292Z",
+      "trader": "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
+    },
+    {
+      "id": 1761470689292,
+      "isBuy": true,
+      "ethAmount": 1.2839,
+      "pyusdAmount": 128.25,
+      "price": 99.89,
+      "timestamp": "2025-10-26T09:24:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761470629292,
+      "isBuy": true,
+      "ethAmount": 2.1363,
+      "pyusdAmount": 213.47,
+      "price": 99.93,
+      "timestamp": "2025-10-26T09:23:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761470569292,
+      "isBuy": true,
+      "ethAmount": 1.0546,
+      "pyusdAmount": 105.35,
+      "price": 99.89,
+      "timestamp": "2025-10-26T09:22:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761470509292,
+      "isBuy": true,
+      "ethAmount": 0.9915,
+      "pyusdAmount": 99.03,
+      "price": 99.88,
+      "timestamp": "2025-10-26T09:21:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761470449292,
+      "isBuy": true,
+      "ethAmount": 3.03,
+      "pyusdAmount": 302.77,
+      "price": 99.92,
+      "timestamp": "2025-10-26T09:20:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761470389292,
+      "isBuy": true,
+      "ethAmount": 1.9833,
+      "pyusdAmount": 198.21,
+      "price": 99.94,
+      "timestamp": "2025-10-26T09:19:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761470329292,
+      "isBuy": true,
+      "ethAmount": 2.3824,
+      "pyusdAmount": 238.02,
+      "price": 99.91,
+      "timestamp": "2025-10-26T09:18:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761470269292,
+      "isBuy": false,
+      "ethAmount": 1.7828,
+      "pyusdAmount": 178.16,
+      "price": 99.93,
+      "timestamp": "2025-10-26T09:17:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761470209292,
+      "isBuy": false,
+      "ethAmount": 1.6889,
+      "pyusdAmount": 168.8,
+      "price": 99.94,
+      "timestamp": "2025-10-26T09:16:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761470149292,
+      "isBuy": false,
+      "ethAmount": 2.4043,
+      "pyusdAmount": 240.39,
+      "price": 99.98,
+      "timestamp": "2025-10-26T09:15:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761470089292,
+      "isBuy": true,
+      "ethAmount": 2.3279,
+      "pyusdAmount": 232.63,
+      "price": 99.93,
+      "timestamp": "2025-10-26T09:14:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761470029292,
+      "isBuy": false,
+      "ethAmount": 0.9558,
+      "pyusdAmount": 95.48,
+      "price": 99.9,
+      "timestamp": "2025-10-26T09:13:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761469969292,
+      "isBuy": false,
+      "ethAmount": 1.5782,
+      "pyusdAmount": 157.74,
+      "price": 99.95,
+      "timestamp": "2025-10-26T09:12:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761469909292,
+      "isBuy": false,
+      "ethAmount": 2.2488,
+      "pyusdAmount": 224.78,
+      "price": 99.96,
+      "timestamp": "2025-10-26T09:11:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761469849292,
+      "isBuy": true,
+      "ethAmount": 0.6778,
+      "pyusdAmount": 67.74,
+      "price": 99.93,
+      "timestamp": "2025-10-26T09:10:49.292Z",
+      "trader": "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
+    },
+    {
+      "id": 1761469789292,
+      "isBuy": false,
+      "ethAmount": 1.912,
+      "pyusdAmount": 191.13,
+      "price": 99.96,
+      "timestamp": "2025-10-26T09:09:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761469729292,
+      "isBuy": false,
+      "ethAmount": 0.1019,
+      "pyusdAmount": 10.18,
+      "price": 99.97,
+      "timestamp": "2025-10-26T09:08:49.292Z",
+      "trader": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    {
+      "id": 1761469669292,
+      "isBuy": true,
+      "ethAmount": 2.5279,
+      "pyusdAmount": 252.79,
+      "price": 100,
+      "timestamp": "2025-10-26T09:07:49.292Z",
+      "trader": "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
+    },
+    {
+      "id": 1761469609292,
+      "isBuy": false,
+      "ethAmount": 0.6433,
+      "pyusdAmount": 64.35,
+      "price": 100.03,
+      "timestamp": "2025-10-26T09:06:49.292Z",
+      "trader": "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
+    },
+    {
+      "id": 1761469549292,
+      "isBuy": false,
+      "ethAmount": 1.2579,
+      "pyusdAmount": 125.8,
+      "price": 100.01,
+      "timestamp": "2025-10-26T09:05:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761469489292,
+      "isBuy": true,
+      "ethAmount": 0.2626,
+      "pyusdAmount": 26.27,
+      "price": 100.06,
+      "timestamp": "2025-10-26T09:04:49.292Z",
+      "trader": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    {
+      "id": 1761469429292,
+      "isBuy": true,
+      "ethAmount": 0.9174,
+      "pyusdAmount": 91.84,
+      "price": 100.11,
+      "timestamp": "2025-10-26T09:03:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761469369292,
+      "isBuy": true,
+      "ethAmount": 2.8844,
+      "pyusdAmount": 288.7,
+      "price": 100.09,
+      "timestamp": "2025-10-26T09:02:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761469309292,
+      "isBuy": false,
+      "ethAmount": 1.8812,
+      "pyusdAmount": 188.31,
+      "price": 100.1,
+      "timestamp": "2025-10-26T09:01:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761469249292,
+      "isBuy": false,
+      "ethAmount": 0.3613,
+      "pyusdAmount": 36.17,
+      "price": 100.11,
+      "timestamp": "2025-10-26T09:00:49.292Z",
+      "trader": "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
+    },
+    {
+      "id": 1761469189292,
+      "isBuy": false,
+      "ethAmount": 1.1551,
+      "pyusdAmount": 115.69,
+      "price": 100.15,
+      "timestamp": "2025-10-26T08:59:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761469129292,
+      "isBuy": true,
+      "ethAmount": 3.0096,
+      "pyusdAmount": 301.45,
+      "price": 100.16,
+      "timestamp": "2025-10-26T08:58:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761469069292,
+      "isBuy": false,
+      "ethAmount": 2.5053,
+      "pyusdAmount": 250.98,
+      "price": 100.18,
+      "timestamp": "2025-10-26T08:57:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761469009292,
+      "isBuy": false,
+      "ethAmount": 2.7079,
+      "pyusdAmount": 271.35,
+      "price": 100.21,
+      "timestamp": "2025-10-26T08:56:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761468949292,
+      "isBuy": true,
+      "ethAmount": 1.403,
+      "pyusdAmount": 140.63,
+      "price": 100.24,
+      "timestamp": "2025-10-26T08:55:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761468889292,
+      "isBuy": true,
+      "ethAmount": 2.5246,
+      "pyusdAmount": 253.02,
+      "price": 100.22,
+      "timestamp": "2025-10-26T08:54:49.292Z",
+      "trader": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    {
+      "id": 1761468829292,
+      "isBuy": true,
+      "ethAmount": 0.2387,
+      "pyusdAmount": 23.92,
+      "price": 100.19,
+      "timestamp": "2025-10-26T08:53:49.292Z",
+      "trader": "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
+    },
+    {
+      "id": 1761468769292,
+      "isBuy": false,
+      "ethAmount": 1.4468,
+      "pyusdAmount": 144.91,
+      "price": 100.16,
+      "timestamp": "2025-10-26T08:52:49.292Z",
+      "trader": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    {
+      "id": 1761468709292,
+      "isBuy": true,
+      "ethAmount": 3.009,
+      "pyusdAmount": 301.24,
+      "price": 100.11,
+      "timestamp": "2025-10-26T08:51:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761468649292,
+      "isBuy": true,
+      "ethAmount": 1.248,
+      "pyusdAmount": 124.91,
+      "price": 100.09,
+      "timestamp": "2025-10-26T08:50:49.292Z",
+      "trader": "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
+    },
+    {
+      "id": 1761468589292,
+      "isBuy": false,
+      "ethAmount": 2.2334,
+      "pyusdAmount": 223.56,
+      "price": 100.1,
+      "timestamp": "2025-10-26T08:49:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761468529292,
+      "isBuy": true,
+      "ethAmount": 2.5958,
+      "pyusdAmount": 259.77,
+      "price": 100.07,
+      "timestamp": "2025-10-26T08:48:49.292Z",
+      "trader": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8"
+    },
+    {
+      "id": 1761468469292,
+      "isBuy": false,
+      "ethAmount": 3.0074,
+      "pyusdAmount": 300.86,
+      "price": 100.04,
+      "timestamp": "2025-10-26T08:47:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761468409292,
+      "isBuy": true,
+      "ethAmount": 2.583,
+      "pyusdAmount": 258.46,
+      "price": 100.06,
+      "timestamp": "2025-10-26T08:46:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761468349292,
+      "isBuy": false,
+      "ethAmount": 2.9227,
+      "pyusdAmount": 292.5,
+      "price": 100.08,
+      "timestamp": "2025-10-26T08:45:49.292Z",
+      "trader": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc"
+    },
+    {
+      "id": 1761468289292,
+      "isBuy": true,
+      "ethAmount": 1.2221,
+      "pyusdAmount": 122.25,
+      "price": 100.04,
+      "timestamp": "2025-10-26T08:44:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761468229292,
+      "isBuy": true,
+      "ethAmount": 1.484,
+      "pyusdAmount": 148.42,
+      "price": 100.01,
+      "timestamp": "2025-10-26T08:43:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761468169292,
+      "isBuy": false,
+      "ethAmount": 2.1854,
+      "pyusdAmount": 218.64,
+      "price": 100.05,
+      "timestamp": "2025-10-26T08:42:49.292Z",
+      "trader": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65"
+    },
+    {
+      "id": 1761468109292,
+      "isBuy": false,
+      "ethAmount": 0.7798,
+      "pyusdAmount": 78.01,
+      "price": 100.03,
+      "timestamp": "2025-10-26T08:41:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761468049292,
+      "isBuy": false,
+      "ethAmount": 3.0198,
+      "pyusdAmount": 302.04,
+      "price": 100.02,
+      "timestamp": "2025-10-26T08:40:49.292Z",
+      "trader": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    {
+      "id": 1761467989292,
+      "isBuy": true,
+      "ethAmount": 1.3005,
+      "pyusdAmount": 130.09,
+      "price": 100.03,
+      "timestamp": "2025-10-26T08:39:49.292Z",
+      "trader": "0x90f79bf6eb2c4f870365e785982e1f101e93b906"
+    }
+  ],
+  "lastUpdated": "2025-10-26T09:39:49.294Z",
+  "totalTrades": 50
+}
