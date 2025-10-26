@@ -20,3 +20,5 @@
 /coverage
 /ignition/deployments
 /contracts/.DS_Store
+/log
+.deps

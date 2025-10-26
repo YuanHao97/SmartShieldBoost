@@ -1,0 +1,10 @@
+[
+  {
+    "trader": "0x2546bcd3c84621e976d8185a91a922ae77ecec30",
+    "isBuy": true,
+    "ethAmount": "0.52",
+    "pyusdAmount": "52.53",
+    "price": "101.05",
+    "timestamp": 1761464823939
+  }
+]

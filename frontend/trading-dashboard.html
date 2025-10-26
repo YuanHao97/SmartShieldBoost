@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETH交易模拟器 - 实时价格监控</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .price-card {
+            text-align: center;
+        }
+
+        .current-price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 20px 0;
+        }
+
+        .price-change {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .positive {
+            color: #4CAF50;
+        }
+
+        .negative {
+            color: #f44336;
+        }
+
+        .pool-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .trading-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .trading-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn-buy {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-buy:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .btn-sell {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-sell:hover {
+            background: #da190b;
+            transform: translateY(-2px);
+        }
+
+        .btn-simulate {
+            background: #2196F3;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-simulate:hover {
+            background: #1976D2;
+        }
+
+        .trades-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .trades-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .trades-header h3 {
+            color: #333;
+        }
+
+        .refresh-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .refresh-btn:hover {
+            background: #5a6fd8;
+        }
+
+        .trades-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .trade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+        }
+
+        .trade-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .trade-item:last-child {
+            border-bottom: none;
+        }
+
+        .trade-type {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .trade-type.buy {
+            background: #e8f5e8;
+            color: #4CAF50;
+        }
+
+        .trade-type.sell {
+            background: #ffeaea;
+            color: #f44336;
+        }
+
+        .trade-details {
+            flex: 1;
+            margin: 0 15px;
+        }
+
+        .trade-amount {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .trade-price {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .trade-time {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .chart {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .status {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .status.connected {
+            background: #e8f5e8;
+            color: #4CAF50;
+        }
+
+        .status.disconnected {
+            background: #ffeaea;
+            color: #f44336;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .trading-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .pool-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 ETH交易模拟器</h1>
+            <p>实时监控ETH价格波动和交易活动</p>
+        </div>
+
+        <div class="status" id="status">
+            <div>🔌 正在连接区块链网络...</div>
+        </div>
+        
+        <div class="status" id="updateStatus" style="display: none;">
+            <div>⏰ 下次更新: <span id="countdown">3</span>秒</div>
+        </div>
+
+        <div class="dashboard">
+            <div class="card price-card">
+                <h3>💰 当前ETH价格</h3>
+                <div class="current-price" id="currentPrice">100.00 PYUSD</div>
+                <div class="price-change" id="priceChange">
+                    <span id="priceChangeText">+0.00%</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🏦 流动性池信息</h3>
+                <div class="pool-info">
+                    <div class="info-item">
+                        <div class="info-label">ETH储备</div>
+                        <div class="info-value" id="ethReserve">100.00 ETH</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">PYUSD储备</div>
+                        <div class="info-value" id="pyusdReserve">10,000.00 PYUSD</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">总流动性</div>
+                        <div class="info-value" id="totalLiquidity">20,000.00</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">交易次数</div>
+                        <div class="info-value" id="tradeCount">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <h3>📈 价格走势图</h3>
+            <canvas id="priceChart" class="chart"></canvas>
+        </div>
+
+        <div class="trading-section">
+            <h3>💼 交易操作</h3>
+            <div class="trading-form">
+                <div class="form-group">
+                    <label for="ethAmount">ETH数量</label>
+                    <input type="number" id="ethAmount" placeholder="输入ETH数量" step="0.01" min="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="pyusdAmount">PYUSD数量</label>
+                    <input type="number" id="pyusdAmount" placeholder="自动计算" readonly>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button class="btn btn-buy" onclick="buyETH()">🟢 买入ETH</button>
+                <button class="btn btn-sell" onclick="sellETH()">🔴 卖出ETH</button>
+                <button class="btn btn-simulate" onclick="startSimulation()">🎲 开始模拟交易</button>
+                <button class="btn btn-simulate" onclick="stopSimulation()" style="background: #f44336; margin-top: 10px;">⏹️ 停止模拟交易</button>
+            </div>
+        </div>
+
+        <div class="trades-section">
+            <div class="trades-header">
+                <h3>📋 最新交易记录</h3>
+                <button class="refresh-btn" onclick="refreshTrades()">🔄 刷新</button>
+            </div>
+            <div class="trades-list" id="tradesList">
+                <div style="text-align: center; color: #666; padding: 20px;">
+                    暂无交易记录
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script>
+        // 全局变量
+        let currentPrice = 100;
+        let initialPrice = 100;
+        let tradeHistory = [];
+        let priceHistory = [];
+        let chart = null;
+        let simulationInterval = null;
+        let countdownInterval = null;
+        let countdown = 10;
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeChart();
+            updateStatus('connected', '✅ 已连接到区块链网络');
+            loadTradeHistory();
+            startPriceUpdates();
+            startCountdown();
+        });
+
+        // 初始化图表
+        function initializeChart() {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'ETH价格 (PYUSD)',
+                        data: [],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            type: 'linear',
+                            title: {
+                                display: true,
+                                text: '价格 (PYUSD)',
+                                font: {
+                                    size: 12,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value.toFixed(2);
+                                },
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        },
+                        x: {
+                            type: 'time',
+                            time: {
+                                displayFormats: {
+                                    second: 'HH:mm:ss',
+                                    minute: 'HH:mm',
+                                    hour: 'HH:mm',
+                                    day: 'MM-dd'
+                                },
+                                tooltipFormat: 'MM-dd HH:mm:ss'
+                            },
+                            adapters: {
+                                date: {
+                                    locale: 'zh-CN'
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: '时间',
+                                font: {
+                                    size: 12,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                font: {
+                                    size: 10
+                                },
+                                maxRotation: 45,
+                                minRotation: 0
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 12,
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return `价格: ${context.parsed.y.toFixed(2)} PYUSD`;
+                                }
+                            }
+                        }
+                    },
+                    elements: {
+                        point: {
+                            radius: 3,
+                            hoverRadius: 6
+                        }
+                    }
+                }
+            });
+        }
+
+        // 更新状态
+        function updateStatus(type, message) {
+            const statusEl = document.getElementById('status');
+            statusEl.className = `status ${type}`;
+            statusEl.innerHTML = `<div>${message}</div>`;
+        }
+
+        // 更新价格显示
+        function updatePriceDisplay() {
+            document.getElementById('currentPrice').textContent = `${currentPrice.toFixed(2)} PYUSD`;
+            
+            const change = ((currentPrice - initialPrice) / initialPrice * 100).toFixed(2);
+            const changeEl = document.getElementById('priceChangeText');
+            changeEl.textContent = `${change >= 0 ? '+' : ''}${change}%`;
+            changeEl.className = change >= 0 ? 'positive' : 'negative';
+        }
+
+        // 更新池子信息
+        function updatePoolInfo() {
+            // 模拟数据更新
+            const ethReserve = 100 - (tradeHistory.filter(t => t.isBuy).length * 0.1);
+            const pyusdReserve = 10000 + (tradeHistory.length * 10);
+            
+            document.getElementById('ethReserve').textContent = `${ethReserve.toFixed(2)} ETH`;
+            document.getElementById('pyusdReserve').textContent = `${pyusdReserve.toLocaleString()} PYUSD`;
+            document.getElementById('totalLiquidity').textContent = `${(ethReserve + pyusdReserve / 100).toFixed(2)}`;
+            document.getElementById('tradeCount').textContent = tradeHistory.length;
+        }
+
+        // 开始价格更新
+        function startPriceUpdates() {
+            setInterval(() => {
+                // 模拟价格波动
+                const change = (Math.random() - 0.5) * 2; // -1 到 +1 的随机变化
+                currentPrice = Math.max(50, currentPrice + change); // 最低50 PYUSD
+                
+                priceHistory.push({
+                    time: new Date(),
+                    price: currentPrice
+                });
+                
+                // 保持最近100个数据点
+                if (priceHistory.length > 100) {
+                    priceHistory.shift();
+                }
+                
+                updatePriceDisplay();
+                updateChart();
+                startCountdown();
+            }, 3000); // 改为3秒更新一次
+        }
+
+        // 开始倒计时
+        function startCountdown() {
+            countdown = 10;
+            document.getElementById('updateStatus').style.display = 'block';
+            
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+            
+            countdownInterval = setInterval(() => {
+                countdown--;
+                document.getElementById('countdown').textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('updateStatus').style.display = 'none';
+                }
+            }, 1000);
+        }
+
+        // 更新图表
+        function updateChart() {
+            if (chart && priceHistory.length > 0) {
+                // 为时间轴准备数据
+                const chartData = priceHistory.map(p => ({
+                    x: p.time,
+                    y: p.price
+                }));
+                
+                chart.data.datasets[0].data = chartData;
+                
+                // 自适应Y轴范围
+                const prices = priceHistory.map(p => p.price);
+                const minPrice = Math.min(...prices);
+                const maxPrice = Math.max(...prices);
+                const priceRange = maxPrice - minPrice;
+                const padding = priceRange * 0.1; // 10%的边距
+                
+                chart.options.scales.y.min = Math.max(0, minPrice - padding);
+                chart.options.scales.y.max = maxPrice + padding;
+                
+                chart.update('none');
+            }
+        }
+
+        // 买入ETH
+        function buyETH() {
+            const ethAmount = parseFloat(document.getElementById('ethAmount').value);
+            if (!ethAmount || ethAmount <= 0) {
+                alert('请输入有效的ETH数量');
+                return;
+            }
+            
+            // 模拟交易
+            const pyusdNeeded = ethAmount * currentPrice;
+            const newPrice = currentPrice * 1.01; // 价格上涨1%
+            
+            addTrade(true, ethAmount, pyusdNeeded, newPrice);
+            currentPrice = newPrice;
+            
+            updatePriceDisplay();
+            updatePoolInfo();
+            updateTradesList();
+        }
+
+        // 卖出ETH
+        function sellETH() {
+            const ethAmount = parseFloat(document.getElementById('ethAmount').value);
+            if (!ethAmount || ethAmount <= 0) {
+                alert('请输入有效的ETH数量');
+                return;
+            }
+            
+            // 模拟交易
+            const pyusdReceived = ethAmount * currentPrice;
+            const newPrice = currentPrice * 0.99; // 价格下跌1%
+            
+            addTrade(false, ethAmount, pyusdReceived, newPrice);
+            currentPrice = newPrice;
+            
+            updatePriceDisplay();
+            updatePoolInfo();
+            updateTradesList();
+        }
+
+        // 添加交易记录
+        function addTrade(isBuy, ethAmount, pyusdAmount, price) {
+            const trade = {
+                id: Date.now(),
+                isBuy: isBuy,
+                ethAmount: ethAmount,
+                pyusdAmount: pyusdAmount,
+                price: price,
+                timestamp: new Date()
+            };
+            
+            tradeHistory.unshift(trade);
+            
+            // 保持最近50笔交易
+            if (tradeHistory.length > 50) {
+                tradeHistory.pop();
+            }
+        }
+
+        // 更新交易列表
+        function updateTradesList() {
+            const tradesList = document.getElementById('tradesList');
+            
+            if (tradeHistory.length === 0) {
+                tradesList.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">暂无交易记录</div>';
+                return;
+            }
+            
+            tradesList.innerHTML = tradeHistory.slice(0, 20).map(trade => `
+                <div class="trade-item">
+                    <div class="trade-type ${trade.isBuy ? 'buy' : 'sell'}">
+                        ${trade.isBuy ? '买入' : '卖出'}
+                    </div>
+                    <div class="trade-details">
+                        <div class="trade-amount">${trade.ethAmount} ETH</div>
+                        <div class="trade-price">${trade.pyusdAmount.toFixed(2)} PYUSD</div>
+                    </div>
+                    <div class="trade-time">${trade.timestamp.toLocaleTimeString()}</div>
+                </div>
+            `).join('');
+        }
+
+        // 开始模拟交易
+        function startSimulation() {
+            if (simulationInterval) {
+                clearInterval(simulationInterval);
+            }
+            
+            updateStatus('connected', '🎲 模拟交易进行中...');
+            
+            simulationInterval = setInterval(() => {
+                const isBuy = Math.random() > 0.5;
+                const ethAmount = Math.random() * 2 + 0.1; // 0.1-2.1 ETH
+                
+                if (isBuy) {
+                    const pyusdNeeded = ethAmount * currentPrice;
+                    const newPrice = currentPrice * (1 + Math.random() * 0.02); // 0-2%上涨
+                    addTrade(true, ethAmount, pyusdNeeded, newPrice);
+                    currentPrice = newPrice;
+                } else {
+                    const pyusdReceived = ethAmount * currentPrice;
+                    const newPrice = currentPrice * (1 - Math.random() * 0.02); // 0-2%下跌
+                    addTrade(false, ethAmount, pyusdReceived, newPrice);
+                    currentPrice = newPrice;
+                }
+                
+                updatePriceDisplay();
+                updatePoolInfo();
+                updateTradesList();
+            }, 3000); // 改为3秒更新一次
+        }
+
+        // 停止模拟交易
+        function stopSimulation() {
+            if (simulationInterval) {
+                clearInterval(simulationInterval);
+                simulationInterval = null;
+                updateStatus('connected', '✅ 模拟交易已停止');
+            }
+        }
+
+        // 刷新交易记录
+        function refreshTrades() {
+            updateTradesList();
+        }
+
+        // 加载交易历史
+        function loadTradeHistory() {
+            // 这里可以加载保存的交易历史
+            updateTradesList();
+        }
+
+        // ETH数量输入变化时更新PYUSD数量
+        document.getElementById('ethAmount').addEventListener('input', function() {
+            const ethAmount = parseFloat(this.value);
+            if (ethAmount > 0) {
+                const pyusdAmount = ethAmount * currentPrice;
+                document.getElementById('pyusdAmount').value = pyusdAmount.toFixed(2);
+            }
+        });
+    </script>
+</body>
+</html>
