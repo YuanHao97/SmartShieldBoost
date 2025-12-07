@@ -23,7 +23,7 @@ function extractABI(contractName: string) {
 function generateFrontendABI(deploymentInfo: any) {
   console.log("\n🔧 Extracting contract ABIs...");
   
-  const contractNames = ["MockPYUSD", "MockETH", "PyusdHandler", "LiquidityPool", "ETHSimulator"];
+  const contractNames = ["MockPYUSD", "MockETH", "LiquidityPool", "ETHSimulator"];
   const abis: Record<string, any[]> = {};
   
   // Extract ABIs for all contracts
@@ -121,14 +121,9 @@ async function main() {
   const mockETH = await viem.deployContract("MockETH", []);
   console.log(`✅ MockETH deployed to: ${mockETH.address}`);
 
-  // 3. Deploy PyusdHandler
-  console.log("3️⃣ Deploying PyusdHandler...");
-  const pyusdHandler = await viem.deployContract("PyusdHandler", [mockPYUSD.address]);
-  console.log(`✅ PyusdHandler deployed to: ${pyusdHandler.address}`);
-
-  // 4. Deploy LiquidityPool
+  // 3. Deploy LiquidityPool
   console.log("4️⃣ Deploying LiquidityPool...");
-  const liquidityPool = await viem.deployContract("LiquidityPool", [mockPYUSD.address, mockETH.address, pyusdHandler.address]);
+  const liquidityPool = await viem.deployContract("LiquidityPool", [mockPYUSD.address, mockETH.address]);
   console.log(`✅ LiquidityPool deployed to: ${liquidityPool.address}`);
 
   // 5. Deploy ETHSimulator
@@ -168,7 +163,6 @@ async function main() {
     contracts: {
       MockPYUSD: mockPYUSD.address,
       MockETH: mockETH.address,
-      PyusdHandler: pyusdHandler.address,
       LiquidityPool: liquidityPool.address,
       ETHSimulator: ethSimulator.address
     },
@@ -194,7 +188,6 @@ async function main() {
   console.log(`👤 Deployer: ${deploymentInfo.deployer}`);
   console.log(`📦 MockPYUSD: ${deploymentInfo.contracts.MockPYUSD}`);
   console.log(`📦 MockETH: ${deploymentInfo.contracts.MockETH}`);
-  console.log(`📦 PyusdHandler: ${deploymentInfo.contracts.PyusdHandler}`);
   console.log(`📦 LiquidityPool: ${deploymentInfo.contracts.LiquidityPool}`);
   console.log(`📦 ETHSimulator: ${deploymentInfo.contracts.ETHSimulator}`);
   console.log(`💰 Initial Price: ${deploymentInfo.initialization.initialPrice} PYUSD`);

@@ -10,7 +10,6 @@ const __dirname = dirname(__filename);
 const CONTRACT_NAMES = [
   "MockPYUSD",
   "MockETH", 
-  "PyusdHandler",
   "LiquidityPool",
   "ETHSimulator"
 ];
@@ -53,7 +52,6 @@ window.CONTRACT_ABIS = ${JSON.stringify(abis, null, 2)};
 window.CONTRACT_ADDRESSES = {
   MockPYUSD: "0x5fbdb2315678afecb367f032d93f642f64180aa3",
   MockETH: "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
-  PyusdHandler: "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
   LiquidityPool: "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
   ETHSimulator: "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9"
 };
@@ -107,7 +105,6 @@ if (typeof module !== 'undefined' && module.exports) {
     addresses: {
       MockPYUSD: "0x5fbdb2315678afecb367f032d93f642f64180aa3",
       MockETH: "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
-      PyusdHandler: "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
       LiquidityPool: "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
       ETHSimulator: "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9"
     }
@@ -124,7 +121,6 @@ if (typeof module !== 'undefined' && module.exports) {
 export interface ContractABIs {
   MockPYUSD: any[];
   MockETH: any[];
-  PyusdHandler: any[];
   LiquidityPool: any[];
   ETHSimulator: any[];
 }
@@ -132,7 +128,6 @@ export interface ContractABIs {
 export interface ContractAddresses {
   MockPYUSD: string;
   MockETH: string;
-  PyusdHandler: string;
   LiquidityPool: string;
   ETHSimulator: string;
 }

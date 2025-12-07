@@ -42,8 +42,6 @@ cat artifacts/contracts/LiquidityPool.sol/LiquidityPool.json | jq '.abi'
 artifacts/contracts/
 ├── LiquidityPool.sol/
 │   └── LiquidityPool.json     # 包含完整ABI
-├── ETHSimulator.sol/
-│   └── ETHSimulator.json     # 包含完整ABI
 ├── MockPYUSD.sol/
 │   └── MockPYUSD.json        # 包含完整ABI
 └── ...
@@ -56,7 +54,6 @@ artifacts/contracts/
 // 自动生成的合约ABI文件
 export const CONTRACT_ABIS = {
   LiquidityPool: [...], // 完整ABI
-  ETHSimulator: [...],  // 完整ABI
   // ...
 };
 
@@ -81,11 +78,9 @@ export const SIMPLIFIED_ABIS = {
   "timestamp": "2024-01-01T00:00:00.000Z",
   "contracts": {
     "LiquidityPool": [...],
-    "ETHSimulator": [...]
   },
   "addresses": {
     "LiquidityPool": "0x...",
-    "ETHSimulator": "0x..."
   },
   "initialization": {
     "initialETHReserve": 100,

@@ -82,7 +82,7 @@ WARNING: Funds sent on live network to accounts with publicly known private keys
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   Value:               0 ETH
   Gas used:            1298051 of 1298051
-  Block #1:            0xa18005517f60df5f02245d332c5285710d6b76c4afa9d9af6e518d6d29d41f23
+  Block #1:            0x2a29d7fef16d22ded6deca2827caa4215a63886320189ab670f009c2b5b3a8b6
 
 [32meth_getTransactionReceipt[0m
 [32meth_chainId[0m
@@ -95,20 +95,7 @@ WARNING: Funds sent on live network to accounts with publicly known private keys
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   Value:               0 ETH
   Gas used:            1495387 of 1495387
-  Block #2:            0x346bb57315bdd0a71cb8afba9339343f755d87627264ab8b05073171c68db9d2
-
-[32meth_getTransactionReceipt[0m
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract deployment: PyusdHandler
-  Contract address:    0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
-  Transaction:         0xccd4cd24e568d22b965782d42ab17657e93dd7355fe4dab48d0bcd75d4b401c3
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  Value:               0 ETH
-  Gas used:            1224641 of 1224641
-  Block #3:            0xf22091a54241267477b2a825b0d4ff5844a4438022948f4b44a95f7b200e2f3c
+  Block #2:            0x657ea290fcdf886ca984b0ac8b4dc5bc4e664f5bbaf050bfb91b9a681ace0a8c
 
 [32meth_getTransactionReceipt[0m
 [32meth_chainId[0m
@@ -116,12 +103,12 @@ WARNING: Funds sent on live network to accounts with publicly known private keys
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract deployment: LiquidityPool
-  Contract address:    0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
-  Transaction:         0x062e6c52a4ebf30d2addeba80fb786d1c4f1f8c879e14b2d6b9fcb4297e094a5
+  Contract address:    0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
+  Transaction:         0xa47308634b777bedcc72c8640239677165156afb54d833d7d166b89f4105be6d
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   Value:               0 ETH
-  Gas used:            1645729 of 1645729
-  Block #4:            0x8def301160384e86af6685d25aaa9842e4080397a39637a2ac64bccc0be91fe7
+  Gas used:            1615190 of 1615190
+  Block #3:            0x3fab7f9966ab8db1f3457592a6409766085e4b859b9decd118dd276807e213af
 
 [32meth_getTransactionReceipt[0m
 [32meth_chainId[0m
@@ -129,12 +116,12 @@ WARNING: Funds sent on live network to accounts with publicly known private keys
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract deployment: ETHSimulator
-  Contract address:    0xdc64a140aa3e981100a9beca4e685f962f0cf6c9
-  Transaction:         0x56416a794910a2c11648299236396119e87779f161c7732983a24003599671b4
+  Contract address:    0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  Transaction:         0xc60e323d2378e1caadc121ea477130ebe018ac191048127bc454388f5ecb46ff
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   Value:               0 ETH
   Gas used:            1383801 of 1383801
-  Block #5:            0x50da85fc0f428cf0ef4ea038e5c467107e7cc5e11f93e807821f715b4319bca4
+  Block #4:            0x25afa7459a947ffb5de6f32d45e33b60b24ce158c371b16ccfec14510df6b91f
 
 [32meth_getTransactionReceipt[0m
 [32meth_chainId[0m
@@ -142,74 +129,74 @@ WARNING: Funds sent on live network to accounts with publicly known private keys
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract call:       MockPYUSD#mint
-  Transaction:         0x5b4f121babe4993cc77acbc903add53a3c7e7979040f6efa30223fbab52d4ebf
+  Transaction:         0xde0feb18211f86debb7460575c3998d0fb6b938d86c5d254d865db5932d65518
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
   Value:               0 ETH
   Gas used:            68782 of 68782
-  Block #6:            0x148a8f7f5c9a7298edf61ce31da9501c06ec7c4639f4ed9491f7e7d4ff605e13
+  Block #5:            0xa94171537f8eb39f069b05107a6b768986cd97a5e2c18bc0c4e9b7613fabdd90
 
 [32meth_chainId[0m
 [32meth_feeHistory[0m
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract call:       MockETH#addMinter
-  Transaction:         0xec61b4feff992214dd543c0e15de3eb09e3e436fb461df4b92c2c6d37ed05dbf
+  Transaction:         0x7bcfd54622bb6dca18c6134482a6ef23a6f3a5c8c078e6358f7cb0b00b1361cb
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
   Value:               0 ETH
   Gas used:            46507 of 46507
-  Block #7:            0x795e069133722e867c88b6ab68424b780eb504681f07b37aa3a793af34d2b86c
+  Block #6:            0x497c00e37216799de352a00dc829d15e36bb0a4ba7e2851bfffbf30ebd234a6f
 
 [32meth_chainId[0m
 [32meth_feeHistory[0m
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract call:       MockPYUSD#approve
-  Transaction:         0xbb32e4f3b930b888e2369a1fd55642c9480b7d59f61227c13889751ea421fc0d
+  Transaction:         0x24a51c5b05b681f91f8d1a15e5b8a32e2b505e08f79a1a6e27b23aaee2c029a0
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
   Value:               0 ETH
   Gas used:            46686 of 46686
-  Block #8:            0xdace83dab1fb0c8afe1c17ba18eaf129c7227061614834ab2a21bc62560ee766
+  Block #7:            0x2cdf46f08551472c68b52fd6f7c6847240552fc56fdcbd6a4fea5ad46abd0416
 
 [32meth_chainId[0m
 [32meth_feeHistory[0m
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract call:       LiquidityPool#initializePool
-  Transaction:         0x868f49a15e6f4a3e2549f07018db911dd115b03cf0861e5f69b2090ff5aa650c
+  Transaction:         0xbd68bb3c09ece4b4b6e088de0879c2bb9f6994bfe22cb9ac37f0e670fcad9afa
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
   Value:               0 ETH
-  Gas used:            105393 of 110333
-  Block #9:            0xb9cae711dae7daac1d30caaa837d8c3bbfb09d211d03f44c518c6a705760d513
+  Gas used:            105371 of 110310
+  Block #8:            0xdd5bd56cccf13c51f1009870c6a6e37f0db58826d88a4e544ad6640ef932d84b
 
 [32meth_accounts[0m
 [32meth_call[0m
   Contract call:       LiquidityPool#getCurrentPrice
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
 
 [32meth_call[0m
   Contract call:       LiquidityPool#getCurrentPrice
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
 
 [32meth_call[0m
   Contract call:       LiquidityPool#getPoolInfo
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
 
 [32meth_call[0m
   Contract call:       LiquidityPool#calculateBuyAmount
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
 
 [32meth_call[0m
   Contract call:       LiquidityPool#calculateSellAmount
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
 
 [32meth_chainId[0m
 [32mhardhat_metadata[0m
@@ -220,234 +207,66 @@ WARNING: Funds sent on live network to accounts with publicly known private keys
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract call:       MockPYUSD#mint
-  Transaction:         0xd19fc838efdf1ba2239224c6020da122d71114f95417558fb1c2e8a02eae40ab
+  Transaction:         0x08a15ff7429645dbd81b093a01e7d18a22a452afa71eb8685d04891cce155710
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
   Value:               0 ETH
   Gas used:            51670 of 51670
-  Block #10:           0x9c747c784d82f55c761c168d0570b4fb0693daf0387288f65cf6b835c800809d
+  Block #9:            0x916843288053040dd96f0a2878deda4d274335f9dbe50b7dc2629f87a1572e2f
 
 [32meth_chainId[0m
 [32meth_feeHistory[0m
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract call:       MockPYUSD#mint
-  Transaction:         0x7b6fb4f584937f651ad457bd63763f39372c30901959b87c518e427f829dd007
+  Transaction:         0x03ddf62e47b73d10930b2e334f1b151167568b78767ece1bf37ba7e98694695a
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
   Value:               0 ETH
   Gas used:            51658 of 51658
-  Block #11:           0x2f939d70dd3ad8d97e93ef4cc9c816c19ffe51e982ec670e871231bbe86d2c29
+  Block #10:           0x935032a82e278c963be77ef457453e36519e19d33a9150fa58b32e274853af30
 
 [32meth_chainId[0m
 [32meth_feeHistory[0m
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract call:       MockPYUSD#mint
-  Transaction:         0x1b90c3407e1a3e36b938f31b6a68339f5bab3e421747ed4011ac881c5fadd0c7
+  Transaction:         0x9352deb7b35def34352d6b5ed39b582d32cbcfe4c59706f7698aae5bbb03d709
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
   Value:               0 ETH
   Gas used:            51670 of 51670
-  Block #12:           0x96dbc500903258d4d907316895911b2d86bc0cfc66e2a39702c51f31a2c50c97
+  Block #11:           0xfd8e4724b1300dc84958966c5c853143b4bf44396be6ffecafc05923ee3f2ff6
 
 [32meth_chainId[0m
 [32meth_feeHistory[0m
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract call:       MockPYUSD#mint
-  Transaction:         0x645ff98affb9092a7c90d4afc8490999e720843bdabfd187d1413530034023dd
+  Transaction:         0xb4440977be53ab11dbf3b50c5abadb68808e3c63135cc736faab2f15ed2f6bd4
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
   Value:               0 ETH
   Gas used:            51670 of 51670
-  Block #13:           0x66a6a56cf6b62d9c19475ccad589c26584d356d2ccbf61e6df204da702637f83
+  Block #12:           0x02ee099dd6449eb2ccc124244d8567694d4b721c9f8038e604ea5b3eb51e2e52
 
 [32meth_chainId[0m
 [32meth_feeHistory[0m
 [32meth_estimateGas[0m
 [32meth_sendTransaction[0m
   Contract call:       MockPYUSD#mint
-  Transaction:         0xe236ffcb684494236c2c4f77ea0444443195a20f7b35b10e010459c166358ad4
+  Transaction:         0xa7e084857e440594afcb12a5d533dd34268480ee1e4c7f8c5165dc1f7721c162
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
   To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
   Value:               0 ETH
   Gas used:            51670 of 51670
-  Block #14:           0x280c704bc662804e3d8b1e777fa85d854e4a8fd2aff316085e58d688eb7ed6de
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0x0fd49c5d52046d05a0d06e5258dfb3f55cde6c9441467305f93015e8cff0dd89
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #15:           0x8f878b942df5558855d3d0d5d698dc88ea4f385177c2637ac1268e5a100d1f32
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0x04a12ab70241da29218772d7863994172fd13294fffb9fb3bd399ef2b5c31f65
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #16:           0xb3d3eb20a8bc41c7d0dfaf58eca827ee2a7117ab0a763d3f1065cd9717794d4f
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0x1f700f64d2dd9ef9c9f4379453cfecddecc8bbe7262d91f801b3b5da578ea314
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #17:           0x5d9008b6b17862918302078ac0239d962343ef3664b6b5a9b79a19676165c36d
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0x9f9de2ec7d02512a3fe26b9c5e29577564af86c2a421d31ee608d8e4f6b3a12f
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #18:           0x803fd3d13359a1bfe354a2c34d7b1629c9e9b16018578a29a54091521317c2df
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0x83c740a58d1189b229032818b34ea9b43b2577c483ff224e80d01834f8ecc5aa
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51658 of 51658
-  Block #19:           0x52e4dd2b8425449215212de95cb149d69e69bd2899fbd3560addf973106a049a
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0xf5f84ff502f9926aef758073b2758857eb5842d06a9add278ea0b1550f9a77d7
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #20:           0x855c236a3aa8acffc12bedbadb4e4a32d95ce4b44e7689e5f5e953f6d85b765b
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0xd3327e1715625d08407a45c49123cb86182381ea156070f2b259354c1c5c8a55
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #21:           0x188f40276c6b6c80bcf83dc50abe3c1e7215b0e7ccd53cf1c5540bcdd2c9b101
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0xe507d42278201e1dd3d7db75e89e3cbb24bf1ad820233c3a4a5baf69f4640ef8
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #22:           0x943a045e2da3a1a2664a8d4c8ac0a5cbd125ba8eb5366e505b8522cdcc67618f
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0x446d6c14f0349c61f731a3f7a0cde6417d2e40e07125994126eb0cb81876fcbd
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #23:           0x3d09517931775d18c040f6a91560bdc7972aa515800a92eec4cbaa5354a51d95
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0x8502f84d6700864807583c2bec37c70d3358d2e297c73643708877461f3db51e
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #24:           0x024f916bd14a70dda72b7edd3f7ac8bcdf566c63bf619667a5ef1774cd76e01d
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0xffa33ff8a3dc0a4996fd44bdb87c17a53d35b71fe2bc6be5a11cb1c9fb53b05b
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #25:           0xcda27b92225d9039e40536d3cfc79b385d88e752de691fdceeec095840cbb05d
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0x5548104f31655023d9e06d529791163885b823a36686cbcd7bd26bb48879ec2f
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #26:           0x9adaef3fd0d1f85566a3969a14ba8c073a84c973df2dcb785f26e54d238d7c7c
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0x2b34df3fac43609a38e5b20fc3b55739c87ae48fe4a909425ee6f8353373b2ad
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #27:           0xc94d8a53e2dee8d5c6db13803df92b102a86e77375ffe92e73859b6a6e151e6d
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#mint
-  Transaction:         0xdaedea6bafa76d50bb30ded94a4b24e52fbc78899f58388a15ae8fc8b76c3e23
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            51670 of 51670
-  Block #28:           0xc216d99c8aff60f62895aff229d98260b4f4ba169116f966f8f8561d863d8a39
+  Block #13:           0x2aa314416f4be62849162e9f0a57aa5f22221a1f5fafa2d5871aeb0065137d7f
 
 [32meth_accounts[0m
 [32meth_call[0m
   Contract call:       LiquidityPool#getCurrentPrice
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
 
 [32meth_call[0m
   Contract call:       MockETH#balanceOf
@@ -460,43 +279,9 @@ WARNING: Funds sent on live network to accounts with publicly known private keys
   To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
 
 [32meth_call[0m
-  Contract call:       LiquidityPool#calculateBuyAmount
+  Contract call:       MockETH#balanceOf
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
-
-[32meth_call[0m
-  Contract call:       MockPYUSD#balanceOf
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#approve
-  Transaction:         0xff5cc5eece40b61c6226d62dede56f377a8ae92ac5d2e95fa09bcc73bc214719
-  From:                0xfabb0ac9d68b0b445fb7357272ff202c5651694a
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            46674 of 46674
-  Block #29:           0xc9b5c2f381576b418916f8a066f23a115ec55d7792f36ca7563734c9eee6be00
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       ETHSimulator#buyETH
-  Transaction:         0x9686c1a6df15ffa2eade74688c78cb61521e0590195aa73312675a96bbecc66f
-  From:                0xfabb0ac9d68b0b445fb7357272ff202c5651694a
-  To:                  0xdc64a140aa3e981100a9beca4e685f962f0cf6c9
-  Value:               0 ETH
-  Gas used:            119600 of 125206
-  Block #30:           0xff44f51515d9da8e7f90fae4d094001cfe93b433e0bd32a9d1b53ba91d4124a3
-
-[32meth_call[0m
-  Contract call:       LiquidityPool#getCurrentPrice
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
 
 [32meth_call[0m
   Contract call:       MockETH#balanceOf
@@ -504,82 +289,14 @@ WARNING: Funds sent on live network to accounts with publicly known private keys
   To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
 
 [32meth_call[0m
-  Contract call:       LiquidityPool#calculateBuyAmount
+  Contract call:       MockETH#balanceOf
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
 
 [32meth_call[0m
-  Contract call:       MockPYUSD#balanceOf
+  Contract call:       MockETH#balanceOf
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#approve
-  Transaction:         0x33b8455629014ab5a481f7d652150341e68f3426ec485636ced3626e99fced7a
-  From:                0xbcd4042de499d14e55001ccbb24a551f3b954096
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            46674 of 46674
-  Block #31:           0x81b7cccd2685845dc82a8cac9fbf6718fa082fd04ced5738ef90735708689243
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       ETHSimulator#buyETH
-  Transaction:         0xc40cdc795beddf08375c4352c96433029b13b794610bada3523712768e278b38
-  From:                0xbcd4042de499d14e55001ccbb24a551f3b954096
-  To:                  0xdc64a140aa3e981100a9beca4e685f962f0cf6c9
-  Value:               0 ETH
-  Gas used:            85400 of 90404
-  Block #32:           0x22599b5af3bd5821b095cfe066fa0ef02d3a8f293fe270c8a453cf4f6b6f0a05
-
-[32meth_call[0m
-  Contract call:       LiquidityPool#getCurrentPrice
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
-
-[32meth_call[0m
-  Contract call:       LiquidityPool#calculateBuyAmount
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
-
-[32meth_call[0m
-  Contract call:       MockPYUSD#balanceOf
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       MockPYUSD#approve
-  Transaction:         0xd00a62736bef87fe7fccff64338bf51691306a28399d74635af04a449ee44e51
-  From:                0x70997970c51812dc3a010c7d01b50e0d17dc79c8
-  To:                  0x5fbdb2315678afecb367f032d93f642f64180aa3
-  Value:               0 ETH
-  Gas used:            46674 of 46674
-  Block #33:           0x41a6a17aef1fce3547e882c29943ffd0f4f77577f66c92739dad99d117e6973d
-
-[32meth_chainId[0m
-[32meth_feeHistory[0m
-[32meth_estimateGas[0m
-[32meth_sendTransaction[0m
-  Contract call:       ETHSimulator#buyETH
-  Transaction:         0xc83aa962ca913adeb1cec7855d010526d88bcb4b43d45ce00e8fe2fba96f0030
-  From:                0x70997970c51812dc3a010c7d01b50e0d17dc79c8
-  To:                  0xdc64a140aa3e981100a9beca4e685f962f0cf6c9
-  Value:               0 ETH
-  Gas used:            85400 of 90404
-  Block #34:           0x47532268c560987fd47f16edbc625d63786aa2a9d1bf266961ab4e96b43f9147
-
-[32meth_call[0m
-  Contract call:       LiquidityPool#getCurrentPrice
-  From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
 
 [32meth_call[0m
   Contract call:       MockETH#balanceOf
@@ -604,10 +321,10 @@ WARNING: Funds sent on live network to accounts with publicly known private keys
 [32meth_call[0m
   Contract call:       LiquidityPool#getCurrentPrice
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
 
 [32meth_call[0m
   Contract call:       LiquidityPool#getPoolInfo
   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
-  To:                  0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+  To:                  0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
 

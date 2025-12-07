@@ -4,7 +4,6 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "./PYUSDHandler.sol";
 import "./MockETH.sol";
 
 contract LiquidityPool is Ownable {
@@ -13,7 +12,6 @@ contract LiquidityPool is Ownable {
     // 代币合约
     IERC20 public immutable mockPYUSD;
     MockETH public immutable mockETH;
-    PyusdHandler public immutable pyusdHandler;
     
     // 流动性池状态
     uint256 public ethReserve;           // ETH储备量
@@ -38,12 +36,10 @@ contract LiquidityPool is Ownable {
     
     constructor(
         address _mockPYUSD,
-        address _mockETH,
-        address _pyusdHandler
+        address _mockETH
     ) Ownable(msg.sender) {
         mockPYUSD = IERC20(_mockPYUSD);
         mockETH = MockETH(_mockETH);
-        pyusdHandler = PyusdHandler(_pyusdHandler);
     }
     
     // 初始化流动性池
@@ -92,7 +88,7 @@ contract LiquidityPool is Ownable {
         return pyusdReserve - newPyusdReserve;
     }
     
-    // 买入ETH（内部函数，由ETHSimulator调用）
+    // 买入ETH
     function buyETH(uint256 _ethAmount) external {
         require(_ethAmount > 0, "Invalid ETH amount");
         require(_ethAmount < ethReserve, "Insufficient ETH reserve");

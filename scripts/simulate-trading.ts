@@ -13,7 +13,8 @@ async function main() {
   const { viem } = await network.connect();
   
   // Get test accounts
-  const [deployer, ...accounts] = await viem.getWalletClients();
+  const [deployer, ...allAccounts] = await viem.getWalletClients();
+  const accounts = allAccounts.slice(0,5);
   console.log(`📊 Using ${accounts.length} test accounts for simulation trading`);
 
   // Read deployment info
@@ -54,13 +55,15 @@ async function main() {
     timestamp: number;
   }> = [];
 
-  // Simulate 10 trades
+
   for (let i = 0; i < 10; i++) {
     const randomAccount = accounts[Math.floor(Math.random() * accounts.length)];
-    const isBuy = Math.random() > 0.5;
     const ethAmount = BigInt(Math.floor(Math.random() * 2 * 1e18) + 1e17); // 0.1-2.1 ETH
     
     try {
+      // const isBuy = Math.random() > 0.5;
+      const isBuy = false;
+      // console.log("isBuy:"+isBuy);
       if (isBuy) {
         // Buy ETH
         const pyusdNeeded = await liquidityPool.read.calculateBuyAmount([ethAmount]);
@@ -90,7 +93,7 @@ async function main() {
         // Sell ETH
         const ethBalance = await mockETH.read.balanceOf([randomAccount.account.address]);
         const sellAmount = ethBalance > ethAmount ? ethAmount : ethBalance;
-        
+        console.log("ethBalance:"+ethBalance+" sellAmount:"+sellAmount);
         if (sellAmount > 0) {
           await ethSimulator.write.sellETH([sellAmount], {
             account: randomAccount.account
